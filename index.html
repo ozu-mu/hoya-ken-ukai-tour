@@ -24,23 +24,43 @@
             background-color: #FFFFFF; /* ページ背景は白を明示 */
         }
         .header-gradient {
-            /* background: linear-gradient(135deg, #A8E6CF, #DCEDC1); Light Mint to Light Lime Green */
-            background: linear-gradient(135deg, #B2EBF2, #E1F5FE); /* Light Cyan to Lighter Blue */
+            background: linear-gradient(135deg, rgba(178, 235, 242, 0.8), rgba(225, 245, 254, 0.85)), url("usho 9b9c4fd1cba9d43731503921b4b47eba.jpg"); /* Light Cyan to Lighter Blue with usho image */
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay; /* Blend mode for subtle effect */
             color: #01579B; /* Darker Blue for contrast */
             padding: 8mm 5mm;
             text-align: center;
             border-radius: 8px;
             margin-bottom: 5mm;
+            position: relative; /* For pseudo-element overlay if needed */
+        }
+        /* Optional: Add a darker overlay if text is hard to read over the image */
+        /* .header-gradient::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1;
+        } */
+        .header-gradient h1, .header-gradient p {
+            position: relative; /* To ensure text is above pseudo-element */
+            z-index: 2;
         }
         .header-gradient h1 {
             font-size: 20pt;
             font-weight: 700;
             margin-bottom: 2mm;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Adjust shadow for readability */
         }
         .header-gradient p {
             font-size: 11pt;
             font-weight: 500;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
         }
         .section-title-flyer {
             font-size: 15pt;
@@ -66,7 +86,7 @@
             margin-bottom: 2mm;
         }
         .highlight-box p, .highlight-box li {
-            font-size: 9pt; /* 「ご参加の皆様へ」の文字サイズ基準 */
+            font-size: 9pt;
             color: #2E7D32; /* Medium Dark Green */
             line-height: 1.6;
         }
@@ -94,14 +114,14 @@
             color: #558B2F; /* Olive Green */
             margin-bottom: 1mm;
         }
-        .info-item p, .info-item ul { /* ツアーの目玉も対象に */
+        .info-item p, .info-item ul {
             font-size: 8.5pt;
             color: #33691E; /* Darker Olive Green */
-            text-align: left; /* 箇条書きを左揃えに */
-            padding-left: 0.5em; /* 箇条書きのインデント調整 */
+            text-align: left;
+            padding-left: 0.5em;
         }
         .info-item ul {
-            list-style-position: inside; /* マーカーを内側に */
+            list-style-position: inside;
         }
         .schedule-item {
             margin-bottom: 2.5mm;
@@ -128,54 +148,71 @@
             font-size: 9pt;
             color: #4E342E; /* Dark Brown for text */
         }
+        .schedule-ukai-highlight { /* For ukai event in schedule */
+            background-color: rgba(255, 253, 231, 0.85); /* Very Light Yellow with opacity */
+            background-image: url("ukai 2-20230418_162843.png");
+            background-size: cover;
+            background-position: center 60%; /* Adjust to show key part of image */
+            background-blend-mode: luminosity; /* Blend with background color */
+            padding: 3mm !important; /* Ensure padding is applied */
+            border-radius: 6px;
+            border-left-width: 3px !important; /* Emphasize border */
+            border-left-color: #FF8F00 !important;
+        }
+        .schedule-ukai-highlight strong, .schedule-ukai-highlight span {
+            color: #3E2723 !important; /* Ensure text is readable */
+            text-shadow: 0px 0px 3px rgba(255,255,255,0.7); /* Light shadow for readability */
+            position: relative;
+            z-index: 1;
+        }
+
         .enjoy-points-list {
             font-size: 9.5pt;
-            line-height: 1.7; /* 少し広めに */
-            color: #1B5E20; /* Dark Green */
+            line-height: 1.7;
+            color: #1B5E20;
         }
         .enjoy-points-list li {
             padding: 2mm 0;
-            border-bottom: 1px dashed #C8E6C9; /* Lighter Green dashed border */
-            display: flex; /* アイコンとテキストを横並び */
-            align-items: flex-start; /* アイコンとテキストの上端を揃える */
+            border-bottom: 1px dashed #C8E6C9;
+            display: flex;
+            align-items: flex-start;
         }
         .enjoy-points-list li:last-child {
             border-bottom: none;
         }
         .enjoy-points-list .point-icon {
-            font-size: 1.2em; /* アイコンサイズ調整 */
+            font-size: 1.2em;
             margin-right: 0.5em;
-            color: #FFB300; /* Amber/Orange for icons */
-            line-height: 1.4; /* アイコンの縦位置調整 */
+            color: #FFB300;
+            line-height: 1.4;
         }
-        .enjoy-points-list a { /* リンクのスタイル */
-            color: #0277BD; /* Link Blue */
+        .enjoy-points-list a {
+            color: #0277BD;
             text-decoration: underline;
         }
         .enjoy-points-list a:hover {
-            color: #01579B; /* Darker Link Blue on hover */
+            color: #01579B;
         }
-
 
         .footer-flyer {
-            margin-top: auto; /* Pushes footer to the bottom */
+            margin-top: auto;
             padding-top: 4mm;
-            border-top: 1px solid #C5E1A5; /* Light Green-Yellow */
+            border-top: 1px solid #C5E1A5;
             text-align: center;
         }
-        .footer-flyer h4 { /* 注意事項のタイトル */
+        .footer-flyer h4 {
             font-size: 9.5pt;
             font-weight: 700;
-            color: #1B5E20; /* Dark Green */
+            color: #1B5E20;
             margin-bottom: 1.5mm;
             text-align: left;
         }
-        .footer-flyer ul { /* 注意事項のリスト */
+        .footer-flyer ul {
             font-size: 9pt;
-            color: #4E342E; /* Dark Brown for text */
-            list-style-type: disc; /* 丸ポチを明示 */
+            color: #4E342E;
+            list-style-type: disc;
             list-style-position: outside;
-            padding-left: 1.5em; /* マーカー分のインデントを調整 */
+            padding-left: 1.5em;
             text-align: left;
             margin-left: 0;
             margin-right: 0;
@@ -183,26 +220,26 @@
         .footer-flyer .footer-contact-info {
             margin-top: 3mm;
             padding: 3mm;
-            border: 1px solid #AED581; /* Light Olive Green */
+            border: 1px solid #AED581;
             border-radius: 6px;
-            background-color: #F9FBE7; /* Very Light Yellow-Green */
+            background-color: #F9FBE7;
         }
         .footer-flyer .footer-contact-info p {
-            font-size: 9pt; /* フォントサイズを大きく */
-            color: #33691E; /* Darker Olive Green */
+            font-size: 9pt;
+            color: #33691E;
             line-height: 1.6;
         }
         .footer-flyer .footer-contact-info a {
-            color: #388E3C; /* Medium Green for link */
+            color: #388E3C;
             text-decoration: underline;
         }
         .footer-flyer .footer-contact-info a:hover {
-            color: #EF6C00; /* Orange on hover */
+            color: #EF6C00;
         }
 
         .participants-list-container {
-            background-color: #FFF9C4; /* Pale Yellow */
-            border: 1px solid #FFF59D; /* Lighter Pale Yellow */
+            background-color: #FFF9C4;
+            border: 1px solid #FFF59D;
             border-radius: 6px;
             padding: 4mm;
             margin-top: 4mm;
@@ -211,7 +248,7 @@
         .participants-list-container h3 {
             font-size: 11pt;
             font-weight: 700;
-            color: #F57F17; /* Bright Orange-Yellow */
+            color: #F57F17;
             text-align: center;
             margin-bottom: 2.5mm;
         }
@@ -220,7 +257,7 @@
             grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
             gap: 1mm 2.5mm;
             font-size: 8.5pt;
-            color: #795548; /* Brown */
+            color: #795548;
             text-align: center;
         }
 
@@ -329,8 +366,8 @@
             <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (休憩・散策など)</span></div>
             <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車</span></div>
 
-            <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
-                <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+            <div class="schedule-item schedule-ukai-highlight">
+                <strong style="font-size:10.5pt;">18:30～20:30</strong> <span style="font-weight:bold; font-size:9.5pt;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
             </div>
             <div class="schedule-item"><strong>20:40頃</strong> <span>うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
             <div class="schedule-item"><strong>20:58以降</strong> <span>JR伊予大洲駅より松山方面へ</span></div>
