@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【ホヤケン常連様限定】おおずのうかい満喫ツアー チラシ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #333333;
+            width: 210mm; /* A4 Width */
+            min-height: 297mm; /* A4 Height */
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .page {
+            padding: 12mm; /* Margins for printing */
+            box-sizing: border-box;
+            min-height: 297mm;
+            display: flex;
+            flex-direction: column;
+            background-color: #FFFFFF; /* ページ背景は白を明示 */
+        }
+        .header-gradient {
+            /* background: linear-gradient(135deg, #A8E6CF, #DCEDC1); Light Mint to Light Lime Green */
+            background: linear-gradient(135deg, #B2EBF2, #E1F5FE); /* Light Cyan to Lighter Blue */
+            color: #01579B; /* Darker Blue for contrast */
+            padding: 8mm 5mm;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 5mm;
+        }
+        .header-gradient h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            margin-bottom: 2mm;
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
+        }
+        .header-gradient p {
+            font-size: 11pt;
+            font-weight: 500;
+        }
+        .section-title-flyer {
+            font-size: 15pt;
+            font-weight: 700;
+            color: #388E3C; /* Medium Green */
+            border-bottom: 2px solid #FFCA28; /* Amber/Light Orange */
+            padding-bottom: 2mm;
+            margin-top: 7mm;
+            margin-bottom: 3mm;
+            text-align: center;
+        }
+        .highlight-box {
+            background-color: #E8F5E9; /* Very Light Green */
+            border: 1px solid #C8E6C9; /* Lighter Green */
+            padding: 4mm;
+            border-radius: 6px;
+            margin-bottom: 5mm;
+        }
+        .highlight-box h3 {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1B5E20; /* Dark Green */
+            margin-bottom: 2mm;
+        }
+        .highlight-box p, .highlight-box li {
+            font-size: 9pt; /* 「ご参加の皆様へ」の文字サイズ基準 */
+            color: #2E7D32; /* Medium Dark Green */
+            line-height: 1.6;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 3mm;
+            margin-bottom: 5mm;
+        }
+        .info-item {
+            background-color: #F1F8E9; /* Lightest Green-Yellow */
+            border: 1px solid #DCEDC1; /* Light Lime Green */
+            border-radius: 6px;
+            padding: 3mm;
+            text-align: center;
+        }
+        .info-item .icon {
+            font-size: 18pt;
+            margin-bottom: 1.5mm;
+            color: #FFB300; /* Amber/Orange */
+        }
+        .info-item h4 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #558B2F; /* Olive Green */
+            margin-bottom: 1mm;
+        }
+        .info-item p, .info-item ul { /* ツアーの目玉も対象に */
+            font-size: 8.5pt;
+            color: #33691E; /* Darker Olive Green */
+            text-align: left; /* 箇条書きを左揃えに */
+            padding-left: 0.5em; /* 箇条書きのインデント調整 */
+        }
+        .info-item ul {
+            list-style-position: inside; /* マーカーを内側に */
+        }
+        .schedule-item {
+            margin-bottom: 2.5mm;
+            padding-left: 5mm;
+            position: relative;
+            border-left: 2px solid #AED581; /* Light Olive Green */
+        }
+        .schedule-item::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 5px;
+            width: 7px;
+            height: 7px;
+            background-color: #AED581;
+            border-radius: 50%;
+        }
+        .schedule-item strong {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #EF6C00; /* Orange */
+        }
+        .schedule-item span {
+            font-size: 9pt;
+            color: #4E342E; /* Dark Brown for text */
+        }
+        .enjoy-points-list {
+            font-size: 9.5pt;
+            line-height: 1.7; /* 少し広めに */
+            color: #1B5E20; /* Dark Green */
+        }
+        .enjoy-points-list li {
+            padding: 2mm 0;
+            border-bottom: 1px dashed #C8E6C9; /* Lighter Green dashed border */
+            display: flex; /* アイコンとテキストを横並び */
+            align-items: flex-start; /* アイコンとテキストの上端を揃える */
+        }
+        .enjoy-points-list li:last-child {
+            border-bottom: none;
+        }
+        .enjoy-points-list .point-icon {
+            font-size: 1.2em; /* アイコンサイズ調整 */
+            margin-right: 0.5em;
+            color: #FFB300; /* Amber/Orange for icons */
+            line-height: 1.4; /* アイコンの縦位置調整 */
+        }
+        .enjoy-points-list a { /* リンクのスタイル */
+            color: #0277BD; /* Link Blue */
+            text-decoration: underline;
+        }
+        .enjoy-points-list a:hover {
+            color: #01579B; /* Darker Link Blue on hover */
+        }
+
+
+        .footer-flyer {
+            margin-top: auto; /* Pushes footer to the bottom */
+            padding-top: 4mm;
+            border-top: 1px solid #C5E1A5; /* Light Green-Yellow */
+            text-align: center;
+        }
+        .footer-flyer h4 { /* 注意事項のタイトル */
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #1B5E20; /* Dark Green */
+            margin-bottom: 1.5mm;
+            text-align: left;
+        }
+        .footer-flyer ul { /* 注意事項のリスト */
+            font-size: 9pt;
+            color: #4E342E; /* Dark Brown for text */
+            list-style-type: disc; /* 丸ポチを明示 */
+            list-style-position: outside;
+            padding-left: 1.5em; /* マーカー分のインデントを調整 */
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .footer-flyer .footer-contact-info {
+            margin-top: 3mm;
+            padding: 3mm;
+            border: 1px solid #AED581; /* Light Olive Green */
+            border-radius: 6px;
+            background-color: #F9FBE7; /* Very Light Yellow-Green */
+        }
+        .footer-flyer .footer-contact-info p {
+            font-size: 9pt; /* フォントサイズを大きく */
+            color: #33691E; /* Darker Olive Green */
+            line-height: 1.6;
+        }
+        .footer-flyer .footer-contact-info a {
+            color: #388E3C; /* Medium Green for link */
+            text-decoration: underline;
+        }
+        .footer-flyer .footer-contact-info a:hover {
+            color: #EF6C00; /* Orange on hover */
+        }
+
+        .participants-list-container {
+            background-color: #FFF9C4; /* Pale Yellow */
+            border: 1px solid #FFF59D; /* Lighter Pale Yellow */
+            border-radius: 6px;
+            padding: 4mm;
+            margin-top: 4mm;
+            margin-bottom: 4mm;
+        }
+        .participants-list-container h3 {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #F57F17; /* Bright Orange-Yellow */
+            text-align: center;
+            margin-bottom: 2.5mm;
+        }
+        .participants-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 1mm 2.5mm;
+            font-size: 8.5pt;
+            color: #795548; /* Brown */
+            text-align: center;
+        }
+
+        /* Print specific styles */
+        @media print {
+            body {
+                width: auto;
+                min-height: auto;
+                margin:0;
+            }
+            .page {
+                padding: 10mm;
+                box-shadow: none;
+                border: none;
+                min-height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="header-gradient">
+            <h1>【ホヤケン常連様限定】<br>初夏の風物詩！おおずのうかい満喫ツアー</h1>
+            <p>～新造船「清流1号」で楽しむ、感動の鵜飼体験と大洲まち歩き～</p>
+        </header>
+
+        <section class="mt-5 mb-3">
+            <p class="text-center text-md leading-relaxed" style="font-size:9.5pt; color: #3E2723;">
+                いつも居酒屋ホヤケンをご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
+                持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
+            </p>
+        </section>
+
+        <div class="participants-list-container">
+            <h3>✨ご参加予定の皆様 (11名様)✨</h3>
+            <div class="participants-list">
+                <span>夜一様</span>
+                <span>暮井戸様</span>
+                <span>時計子様</span>
+                <span>へーけ様</span>
+                <span>美奈様</span>
+                <span>風来松様</span>
+                <span>さすけ様</span>
+                <span>上野様</span>
+                <span>真澄様</span>
+                <span>阿部様</span>
+                <span>宇高様</span>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="section-title-flyer">ツアー概要</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="icon">🗓️</div>
+                    <h4>開催日</h4>
+                    <p class="font-bold text-lg" style="color:#D84315;">2025年6月1日 (日)</p>
+                </div>
+                <div class="info-item">
+                    <div class="icon">💰</div>
+                    <h4>料金 (お一人様)</h4>
+                    <p class="font-bold text-lg" style="color:#D84315;">9,000円 <span class="text-sm">(税込)</span></p>
+                    <p class="text-xs mt-1" style="font-size:7pt;">(ガイド料、臥龍山荘入館料、貸切船、食事、飲物込)</p>
+                </div>
+                <div class="info-item">
+                    <div class="icon">🌟</div>
+                    <h4>ツアーの目玉</h4>
+                    <ul class="list-disc">
+                        <li>大洲の町並み散策！専門ガイド付き！</li>
+                        <li>新造船「清流1号」貸切！</li>
+                        <li>日本三大鵜飼を体験！</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title-flyer">お楽しみポイント</h2>
+            <ul class="enjoy-points-list">
+                <li><span class="point-icon">🏞️</span><div><span class="font-bold">風情ある町並み：</span><a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>の認証を受けた大洲の歴史的な町並みを散策。臥龍山荘も見学。</div></li>
+                <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>ピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
+                <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「合わせうかい」！鵜匠の技は必見！</div></li>
+                <li><span class="point-icon">🍽️</span><div><span class="font-bold">船上のお食事：</span>鵜飼を観ながら、大洲ええもんセレクションに選定されている季節の美味しいお食事と地酒などの飲み物をお楽しみいただけます。</div></li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 class="section-title-flyer">当日のスケジュール</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 mb-2">
+                <div>
+                    <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">Aプラン: JR松山駅利用</h4>
+                    <div class="schedule-item"><strong>14:30</strong> <span>JR松山駅発 (特急)</span></div>
+                    <div class="schedule-item"><strong>15:08</strong> <span>JR伊予大洲駅着</span></div>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">Bプラン: 宇和島バス 市駅発</h4>
+                    <div class="schedule-item"><strong>13:45</strong> <span>伊予鉄松山市駅前発</span></div>
+                    <div class="schedule-item"><strong>14:47</strong> <span>大洲本町駅着</span></div>
+                </div>
+            </div>
+            <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">--- 共通スケジュール ---</h4>
+            <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・ガイド付き大洲まち歩き開始 (臥龍山荘見学含)</span></div>
+            <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (休憩・散策など)</span></div>
+            <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車</span></div>
+
+            <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
+                <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+            </div>
+            <div class="schedule-item"><strong>20:40頃</strong> <span>うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
+            <div class="schedule-item"><strong>20:58以降</strong> <span>JR伊予大洲駅より松山方面へ</span></div>
+            <p class="text-xs text-center mt-1 text-gray-500" style="font-size:7.5pt;">※時間は目安です。当日の状況により変更になる場合があります。</p>
+        </section>
+
+        <section class="highlight-box mt-3">
+            <h3>ご参加の皆様へのお願い</h3>
+            <ul class="list-disc list-inside space-y-0.5">
+                <li>当日は「大洲のうかい開き」イベント日です。報道機関の取材があるかもしれませんので、その際は温かいコメントにご協力ください。</li>
+                <li>SNS等で「#大洲のうかい開き」「#大洲のうかい」「#ホヤケン」をつけて魅力発信いただけると嬉しいです！</li>
+            </ul>
+        </section>
+
+        <footer class="footer-flyer">
+            <h4>その他注意事項</h4>
+            <ul class="space-y-px">
+                <li>自由時間中の休憩場所については、現在検討中です。</li>
+                <li>天候により鵜飼が中止になる場合があります (荒天時は前日午前中に判断、キャンセル料なし)。</li>
+                <li>歩きやすい服装・靴でご参加ください。川風は涼しい場合があるので羽織るものがあると便利です。</li>
+                <li>帰りのJR切符は事前購入をおすすめします。(汽車内で購入可能？スマえきちゃんアプリ等)</li>
+            </ul>
+            <div class="footer-contact-info">
+                <p>ツアー企画：酒＋１ホヤケン＆壁無心</p>
+                <p>うかい情報参考：<br>
+                    大洲観光総合案内所 TEL: 0893-57-6655<br>
+                    <a href="https://jp.visitozu.com/" target="_blank">大洲市観光情報サイト visit OZU (jp.visitozu.com)</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+    </body>
+</html>
