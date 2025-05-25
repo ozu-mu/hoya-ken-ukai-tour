@@ -11,14 +11,14 @@
             font-family: 'Noto Sans JP', sans-serif;
             color: #333333;
             width: 210mm; /* A4 Width */
-            min-height: 297mm; /* A4 Height */
+            min-height: 297mm; /* A4 Height for one page, can extend for two */
             margin: 0 auto;
             box-sizing: border-box;
         }
         .page {
             padding: 10mm;
             box-sizing: border-box;
-            min-height: 297mm;
+            /* min-height: 297mm; Removed to allow content to flow naturally across pages if needed */
             display: flex;
             flex-direction: column;
             background-color: #FFFFFF;
@@ -43,48 +43,46 @@
         }
         .intro-section {
             display: flex;
-            flex-direction: row; /* Default for wider screens */
-            align-items: flex-start; /* Align items to the top */
+            flex-direction: row;
+            align-items: center; /* Align items vertically center */
             gap: 4mm;
             margin-top: 1mm;
             margin-bottom: 3mm;
         }
         .intro-text {
-            flex: 1; /* Takes available space */
+            flex: 1;
             font-size: 9.5pt;
             color: #3E2723;
-            line-height: 1.65;
+            line-height: 1.7; /* Adjusted line height for better fit with image */
             text-align: left;
         }
         .intro-image-container {
-            flex: 0 0 45%; /* Fixed width for the image container, adjust as needed */
-            max-width: 45%;
+            flex: 0 0 40%; /* Slightly reduced width for the image container */
+            max-width: 40%;
             text-align: center;
         }
         .intro-image-container img {
             max-width: 100%;
-            max-height: 60mm; /* Adjust height for intro image */
+            max-height: 35mm; /* Adjusted: Height to roughly match 4-5 lines of text */
             border-radius: 8px;
-            box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.9),
-                        0 0 12px 10px rgba(100, 100, 100, 0.25);
-            object-fit: cover;
+            box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.9),
+                        0 0 10px 7px rgba(100, 100, 100, 0.2);
+            object-fit: contain; /* Use contain to ensure whole image is visible */
         }
-        /* For A4 portrait, stack intro text and image on smaller virtual "screens" or if text is too squished */
-        @media (max-width: 180mm) { /* Approximate width where side-by-side might be too tight */
+        @media (max-width: 180mm) {
             .intro-section {
                 flex-direction: column;
-                align-items: center; /* Center items when stacked */
+                align-items: center;
             }
             .intro-image-container {
-                flex: 1 1 auto; /* Allow it to take full width when stacked */
-                max-width: 80%; /* Or a suitable max-width */
+                flex: 1 1 auto;
+                max-width: 70%; /* Adjust for stacked view */
                 margin-top: 3mm;
             }
             .intro-text {
-                text-align: center; /* Center text when stacked */
+                text-align: center;
             }
         }
-
 
         .section-title-flyer {
             font-size: 14pt;
@@ -178,17 +176,29 @@
             font-weight: 700;
             color: #EF6C00;
         }
-        .schedule-item span {
+        .schedule-item span, .schedule-item a {
             font-size: 8.5pt;
             color: #4E342E;
         }
+        .schedule-item a {
+            text-decoration: underline;
+            color: #0288D1;
+        }
+        .schedule-item a:hover {
+            color: #01579B;
+        }
+        .schedule-plan-title a {
+             font-weight: 600;
+             color: #33691E !important;
+        }
+
         .image-container-blurred-edges {
             text-align: center;
             margin: 4mm auto;
             padding: 2px;
         }
         .image-container-blurred-edges img {
-            max-width: 100%; /* Allow image to take full width of its container */
+            max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.9),
                         0 0 12px 10px rgba(100, 100, 100, 0.25);
@@ -199,16 +209,16 @@
             display: flex;
             gap: 4mm;
             margin: 5mm 0;
-            align-items: flex-start; /* Align tops of images */
+            align-items: flex-start;
         }
         .dual-image-container .image-wrapper {
-            flex: 1; /* Each image takes half the space */
+            flex: 1;
             text-align: center;
         }
         .dual-image-container img {
-            max-width: 100%; /* Full width of its wrapper */
-            max-height: 75mm; /* Increased max-height for more impact */
-            object-fit: cover; /* Or contain, depending on desired look */
+            max-width: 100%;
+            max-height: 70mm; /* Slightly reduced to help with page fit */
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.9),
                         0 0 12px 10px rgba(100, 100, 100, 0.25);
@@ -240,6 +250,19 @@
         }
         .enjoy-points-list a:hover {
             color: #01579B;
+        }
+        .pdf-download-link {
+            font-size: 7.5pt;
+            margin-left: 1em;
+            padding: 0.5mm 1mm;
+            background-color: #FFCA28;
+            color: #3E2723;
+            border-radius: 3px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .pdf-download-link:hover {
+            background-color: #FFB300;
         }
 
         .footer-flyer {
@@ -338,7 +361,7 @@
         <section class="intro-section">
             <div class="intro-text">
                 いつもホヤケンをご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
-                持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
+                持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
             </div>
             <div class="intro-image-container image-container-blurred-edges">
                 <img src="ukai_image.png" alt="鵜飼の情景">
@@ -391,7 +414,7 @@
         <section>
             <h2 class="section-title-flyer">お楽しみポイント</h2>
             <ul class="enjoy-points-list">
-                <li><span class="point-icon">🏞️</span><div><span class="font-bold">歴史的町並み：</span><a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>の認証を受けた大洲の歴史的な町並みを散策。臥龍山荘も見学。</div></li>
+                <li><span class="point-icon">🏞️</span><div><span class="font-bold">歴史的町並み：</span><a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>の認証を受けた大洲の歴史的な町並みを散策。<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘</a>も見学。</div></li>
                 <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>ピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
                 <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「合わせうかい」！鵜匠の技は必見！</div></li>
                 <li><span class="point-icon">🍽️</span><div><span class="font-bold">船上のお食事：</span>鵜飼を観ながら、大洲ええもんセレクションに選定されている季節の美味しいお食事と地酒などの飲み物をお楽しみいただけます。</div></li>
@@ -402,23 +425,25 @@
             <h2 class="section-title-flyer">当日のスケジュール</h2>
              <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 mb-2">
                 <div>
-                    <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">Aプラン: JR松山駅利用</h4>
+                    <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/c89Tot9mSujYW6PR6" target="_blank">Aプラン: JR松山駅利用</a></h4>
                     <div class="schedule-item"><strong>14:30</strong> <span>JR松山駅発 (特急)</span></div>
                     <div class="schedule-item"><strong>15:08</strong> <span>JR伊予大洲駅着</span></div>
                 </div>
                 <div>
-                    <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">Bプラン: 宇和島バス 市駅発</h4>
+                    <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://transfer-internal.navitime.biz/uwajima-bus/pc/transfer/TransferSearch?startName=%E6%9D%BE%E5%B1%B1%E5%B8%82%E9%A7%85&start=00026286&startSpot=&startSpotLon=&startSpotLat=&startCoord=&goalName=%E5%A4%A7%E6%B4%B2%E6%9C%AC%E7%94%BA&goal=00042729&goalSpot=&goalSpotLon=&goalSpotLat=&goalCoord=&month_=2025%2F6%2F1&year=2025&month=6&day=1&hour=13&minute=36&basis=1&sort=0&wspeed=standard" target="_blank">Bプラン: 宇和島バス 市駅発</a></h4>
                     <div class="schedule-item"><strong>13:45</strong> <span>伊予鉄松山市駅前発</span></div>
                     <div class="schedule-item"><strong>14:47</strong> <span>大洲本町駅着</span></div>
                 </div>
             </div>
             <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">--- 共通スケジュール ---</h4>
-            <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・ガイド付き大洲まち歩き開始 (臥龍山荘見学含)</span></div>
+            <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・<a href="https://jp.visitozu.com/archives/feature/3515" target="_blank">ガイド付き大洲まち歩き開始</a> (<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘見学</a>含)</span></div>
             <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (休憩・散策など)</span></div>
             <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車</span></div>
             
             <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
-                <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+                <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> 
+                <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+                <a href="2025_ukai_flyer.pdf" download="大洲鵜飼ツアーチラシ2025.pdf" class="pdf-download-link">チラシDL</a>
             </div>
 
             <div class="dual-image-container">
