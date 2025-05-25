@@ -24,43 +24,22 @@
             background-color: #FFFFFF; /* ページ背景は白を明示 */
         }
         .header-gradient {
-            background: linear-gradient(135deg, rgba(178, 235, 242, 0.8), rgba(225, 245, 254, 0.85)), url("usho 9b9c4fd1cba9d43731503921b4b47eba.jpg"); /* Light Cyan to Lighter Blue with usho image */
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay; /* Blend mode for subtle effect */
+            background: linear-gradient(135deg, #B2EBF2, #E1F5FE); /* Light Cyan to Lighter Blue */
             color: #01579B; /* Darker Blue for contrast */
             padding: 8mm 5mm;
             text-align: center;
             border-radius: 8px;
             margin-bottom: 5mm;
-            position: relative; /* For pseudo-element overlay if needed */
-        }
-        /* Optional: Add a darker overlay if text is hard to read over the image */
-        /* .header-gradient::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            z-index: 1;
-        } */
-        .header-gradient h1, .header-gradient p {
-            position: relative; /* To ensure text is above pseudo-element */
-            z-index: 2;
         }
         .header-gradient h1 {
             font-size: 20pt;
             font-weight: 700;
             margin-bottom: 2mm;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Adjust shadow for readability */
+            text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
         }
         .header-gradient p {
             font-size: 11pt;
             font-weight: 500;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
         }
         .section-title-flyer {
             font-size: 15pt;
@@ -108,21 +87,31 @@
             margin-bottom: 1.5mm;
             color: #FFB300; /* Amber/Orange */
         }
-        .info-item h4 {
+        .info-item h4 { /* 開催日、料金、ツアーの目玉 の小タイトル */
             font-size: 10pt;
             font-weight: 700;
             color: #558B2F; /* Olive Green */
             margin-bottom: 1mm;
         }
-        .info-item p, .info-item ul {
-            font-size: 8.5pt;
+        .info-item .main-info-text { /* 開催日、料金の主要テキスト */
+            font-size: 11pt; /* フォントサイズを大きく */
+            font-weight: bold;
+            color:#D84315;
+        }
+        .info-item .sub-info-text { /* 料金の(税込)など */
+            font-size: 8pt;
+        }
+        .info-item ul { /* ツアーの目玉のリスト */
+            font-size: 9pt; /* フォントサイズを大きく */
             color: #33691E; /* Darker Olive Green */
             text-align: left;
-            padding-left: 0.5em;
-        }
-        .info-item ul {
+            padding-left: 1em; /* 箇条書きのインデント調整 */
             list-style-position: inside;
         }
+        .info-item ul li {
+             margin-bottom: 0.5mm;
+        }
+
         .schedule-item {
             margin-bottom: 2.5mm;
             padding-left: 5mm;
@@ -148,23 +137,29 @@
             font-size: 9pt;
             color: #4E342E; /* Dark Brown for text */
         }
-        .schedule-ukai-highlight { /* For ukai event in schedule */
-            background-color: rgba(255, 253, 231, 0.85); /* Very Light Yellow with opacity */
-            background-image: url("ukai 2-20230418_162843.png");
-            background-size: cover;
-            background-position: center 60%; /* Adjust to show key part of image */
-            background-blend-mode: luminosity; /* Blend with background color */
-            padding: 3mm !important; /* Ensure padding is applied */
-            border-radius: 6px;
-            border-left-width: 3px !important; /* Emphasize border */
-            border-left-color: #FF8F00 !important;
+        .image-container-blurred-edges {
+            text-align: center;
+            margin: 5mm auto;
+            padding: 2px; /* Blurがはみ出ないように少しパディング */
         }
-        .schedule-ukai-highlight strong, .schedule-ukai-highlight span {
-            color: #3E2723 !important; /* Ensure text is readable */
-            text-shadow: 0px 0px 3px rgba(255,255,255,0.7); /* Light shadow for readability */
-            position: relative;
-            z-index: 1;
+        .image-container-blurred-edges img {
+            max-width: 80%;
+            border-radius: 8px; /* 画像自体の角を少し丸める */
+            /* filter: blur(0.5px);  画像自体をぼかすのは避ける */
+            box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.9), /* 内側の白ぼかし */
+                        0 0 10px 8px rgba(100, 100, 100, 0.2); /* 外側の薄い影でエッジを柔らかく */
+            display: block;
+            margin: 0 auto;
         }
+         .top-image-container img { /* トップ画像専用のサイズ調整 */
+            max-height: 60mm;
+            object-fit: cover;
+        }
+        .schedule-image-container img { /* スケジュール内画像専用のサイズ調整 */
+            max-height: 45mm;
+            object-fit: contain;
+        }
+
 
         .enjoy-points-list {
             font-size: 9.5pt;
@@ -287,8 +282,11 @@
             <p>～新造船「清流1号」で楽しむ、感動の鵜飼体験と大洲まち歩き～</p>
         </header>
 
-        <section class="mt-5 mb-3">
-            <p class="text-center text-md leading-relaxed" style="font-size:9.5pt; color: #3E2723;">
+        <div class="image-container-blurred-edges top-image-container">
+            <img src="usho 9b9c4fd1cba9d43731503921b4b47eba.jpg" alt="鵜匠の画像">
+        </div>
+
+        <section class="mt-1 mb-3"> <p class="text-center text-md leading-relaxed" style="font-size:9.5pt; color: #3E2723;">
                 いつも居酒屋ホヤケンをご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
                 持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
             </p>
@@ -317,12 +315,12 @@
                 <div class="info-item">
                     <div class="icon">🗓️</div>
                     <h4>開催日</h4>
-                    <p class="font-bold text-lg" style="color:#D84315;">2025年6月1日 (日)</p>
+                    <p class="main-info-text">2025年6月1日 (日)</p>
                 </div>
                 <div class="info-item">
                     <div class="icon">💰</div>
                     <h4>料金 (お一人様)</h4>
-                    <p class="font-bold text-lg" style="color:#D84315;">9,000円 <span class="text-sm">(税込)</span></p>
+                    <p class="main-info-text">9,000円 <span class="sub-info-text">(税込)</span></p>
                     <p class="text-xs mt-1" style="font-size:7pt;">(ガイド料、臥龍山荘入館料、貸切船、食事、飲物込)</p>
                 </div>
                 <div class="info-item">
@@ -365,9 +363,13 @@
             <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・ガイド付き大洲まち歩き開始 (臥龍山荘見学含)</span></div>
             <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (休憩・散策など)</span></div>
             <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車</span></div>
+            
+            <div class="image-container-blurred-edges schedule-image-container">
+                <img src="ukai 2-20230418_162843.png" alt="鵜飼の様子">
+            </div>
 
-            <div class="schedule-item schedule-ukai-highlight">
-                <strong style="font-size:10.5pt;">18:30～20:30</strong> <span style="font-weight:bold; font-size:9.5pt;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+            <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
+                <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
             </div>
             <div class="schedule-item"><strong>20:40頃</strong> <span>うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
             <div class="schedule-item"><strong>20:58以降</strong> <span>JR伊予大洲駅より松山方面へ</span></div>
