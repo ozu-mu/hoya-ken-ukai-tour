@@ -10,15 +10,18 @@
         body {
             font-family: 'Noto Sans JP', sans-serif;
             color: #333333;
-            width: 210mm; /* A4 Width */
-            min-height: 297mm; /* A4 Height for one page, can extend for two */
             margin: 0 auto;
             box-sizing: border-box;
+            background-color: #f0f0f0; /* Add a light background for web view to distinguish page */
+        }
+        .page-container { /* New wrapper for web view centering */
+            max-width: 210mm; /* A4 Width for web view */
+            margin: 10mm auto; /* Centering with some margin */
+            box-shadow: 0 0 15px rgba(0,0,0,0.15); /* Add shadow for page effect on web */
         }
         .page {
             padding: 10mm;
             box-sizing: border-box;
-            /* min-height: 297mm; Removed to allow content to flow naturally across pages if needed */
             display: flex;
             flex-direction: column;
             background-color: #FFFFFF;
@@ -43,9 +46,9 @@
         }
         .intro-section {
             display: flex;
-            flex-direction: row;
-            align-items: center; /* Align items vertically center */
-            gap: 4mm;
+            flex-direction: column; /* Default to column for mobile */
+            align-items: center;
+            gap: 3mm;
             margin-top: 1mm;
             margin-bottom: 3mm;
         }
@@ -53,34 +56,37 @@
             flex: 1;
             font-size: 9.5pt;
             color: #3E2723;
-            line-height: 1.7; /* Adjusted line height for better fit with image */
-            text-align: left;
+            line-height: 1.7;
+            text-align: center; /* Center text on mobile */
         }
         .intro-image-container {
-            flex: 0 0 40%; /* Slightly reduced width for the image container */
-            max-width: 40%;
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 80%;
             text-align: center;
+            margin-top: 2mm;
         }
         .intro-image-container img {
             max-width: 100%;
-            max-height: 35mm; /* Adjusted: Height to roughly match 4-5 lines of text */
+            max-height: 35mm;
             border-radius: 8px;
             box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.9),
                         0 0 10px 7px rgba(100, 100, 100, 0.2);
-            object-fit: contain; /* Use contain to ensure whole image is visible */
+            object-fit: contain;
         }
-        @media (max-width: 180mm) {
+        @media (min-width: 768px) {
             .intro-section {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-            }
-            .intro-image-container {
-                flex: 1 1 auto;
-                max-width: 70%; /* Adjust for stacked view */
-                margin-top: 3mm;
+                text-align: left;
             }
             .intro-text {
-                text-align: center;
+                text-align: left;
+            }
+            .intro-image-container {
+                flex: 0 0 40%;
+                max-width: 40%;
+                margin-top: 0;
             }
         }
 
@@ -90,7 +96,7 @@
             color: #388E3C;
             border-bottom: 2px solid #FFCA28;
             padding-bottom: 1.5mm;
-            margin-top: 6mm;
+            margin-top: 5mm; /* Adjusted margin */
             margin-bottom: 2.5mm;
             text-align: center;
         }
@@ -114,10 +120,21 @@
         }
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2.5mm;
             margin-bottom: 4mm;
         }
+        @media (min-width: 640px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .info-grid {
+                 grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+        }
+
         .info-item {
             background-color: #F1F8E9;
             border: 1px solid #DCEDC1;
@@ -153,6 +170,18 @@
         }
         .info-item ul li {
              margin-bottom: 0.3mm;
+        }
+
+        .schedule-plans-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2mm 3mm;
+            margin-bottom: 2mm;
+        }
+        @media (min-width: 768px) {
+            .schedule-plans-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .schedule-item {
@@ -207,22 +236,77 @@
         }
         .dual-image-container {
             display: flex;
+            flex-direction: column;
             gap: 4mm;
-            margin: 5mm 0;
-            align-items: flex-start;
+            margin: 4mm 0; /* Adjusted margin */
+            align-items: center;
         }
         .dual-image-container .image-wrapper {
             flex: 1;
+            width: 100%;
+            max-width: 85%;
             text-align: center;
+        }
+        @media (min-width: 768px) {
+            .dual-image-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .dual-image-container .image-wrapper {
+                 max-width: none;
+            }
         }
         .dual-image-container img {
             max-width: 100%;
-            max-height: 70mm; /* Slightly reduced to help with page fit */
+            max-height: 65mm; /* Adjusted for balance */
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.9),
                         0 0 12px 10px rgba(100, 100, 100, 0.25);
         }
+
+        .menu-section {
+            margin: 4mm 0;
+            padding: 4mm;
+            background-color: #FAFAD2; /* LightGoldenrodYellow */
+            border: 1px solid #EEE8AA; /* PaleGoldenrod */
+            border-radius: 8px;
+        }
+        .menu-title {
+            font-size: 13pt;
+            font-weight: bold;
+            color: #8B4513; /* SaddleBrown */
+            text-align: center;
+            margin-bottom: 3mm;
+            border-bottom: 1px solid #DAA520; /* Goldenrod */
+            padding-bottom: 1.5mm;
+        }
+        .menu-category {
+            font-size: 10.5pt;
+            font-weight: bold;
+            color: #A0522D; /* Sienna */
+            margin-top: 2.5mm;
+            margin-bottom: 1mm;
+        }
+        .menu-item {
+            font-size: 9pt;
+            color: #5D4037; /* Brownish */
+            line-height: 1.6;
+            margin-left: 1em;
+        }
+        .menu-item .eemono {
+            font-size: 0.8em;
+            color: #CD853F; /* Peru */
+            font-style: italic;
+        }
+        .menu-item .eemono a { /* Link style for eemono */
+            color: #CD853F;
+            text-decoration: underline;
+        }
+         .menu-item .eemono a:hover {
+            color: #A0522D;
+        }
+
 
         .enjoy-points-list {
             font-size: 9pt;
@@ -260,6 +344,8 @@
             border-radius: 3px;
             text-decoration: none;
             font-weight: bold;
+            display: inline-block;
+            margin-top: 1mm;
         }
         .pdf-download-link:hover {
             background-color: #FFB300;
@@ -325,165 +411,221 @@
         }
         .participants-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 1mm 2mm;
             font-size: 8pt;
             color: #795548;
             text-align: center;
         }
+        @media (min-width: 480px) {
+            .participants-list {
+                 grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+            }
+        }
 
         /* Print specific styles */
         @media print {
             body {
-                width: auto;
+                width: 210mm;
                 min-height: auto;
                 margin:0;
+                background-color: #FFFFFF;
+                box-shadow: none;
+            }
+            .page-container {
+                max-width: none;
+                margin: 0;
+                box-shadow: none;
             }
             .page {
                 padding: 10mm;
-                box-shadow: none;
-                border: none;
-                min-height: auto;
+                min-height: 287mm; /* Approximate A4 content height for one side */
             }
+            .intro-section {
+                flex-direction: row !important;
+                align-items: center !important;
+            }
+            .intro-text { text-align: left !important; }
+            .intro-image-container { flex: 0 0 40% !important; max-width: 40% !important; margin-top: 0 !important; }
+            .intro-image-container img { max-height: 35mm !important; }
+
+            .info-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; }
+            .schedule-plans-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .dual-image-container { flex-direction: row !important; align-items: flex-start !important; }
+            .dual-image-container .image-wrapper { max-width: none !important; }
+            .participants-list { grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)) !important; }
+
             .no-print {
-                display: none;
+                display: none !important;
             }
         }
     </style>
 </head>
 <body>
-    <div class="page">
-        <header class="header-gradient">
-            <h1>【ホヤケン常連様限定】<br>初夏の風物詩！おおずのうかい満喫ツアー</h1>
-            <p>～新造船「清流1号」で楽しむ、感動の鵜飼体験と大洲まち歩き～</p>
-        </header>
+    <div class="page-container">
+        <div class="page">
+            <header class="header-gradient">
+                <h1>【ホヤケン常連様限定】<br>初夏の風物詩！おおずのうかい満喫ツアー</h1>
+                <p>～新造船「清流1号」で楽しむ、感動の鵜飼体験と大洲まち歩き～</p>
+            </header>
 
-        <section class="intro-section">
-            <div class="intro-text">
-                いつもホヤケンをご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
-                持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
-            </div>
-            <div class="intro-image-container image-container-blurred-edges">
-                <img src="ukai_image.png" alt="鵜飼の情景">
-            </div>
-        </section>
+            <section class="intro-section">
+                <div class="intro-text">
+                    いつもホヤケンをご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
+                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
+                </div>
+                <div class="intro-image-container image-container-blurred-edges">
+                    <img src="ukai_image.png" alt="鵜飼の情景">
+                </div>
+            </section>
 
-        <div class="participants-list-container">
-            <h3>✨ご参加予定の皆様 (11名様)✨</h3>
-            <div class="participants-list">
-                <span>夜市さん</span>
-                <span>暮井戸さん</span>
-                <span>時計子さん</span>
-                <span>へーけさん</span>
-                <span>美奈さん</span>
-                <span>風来松さん</span>
-                <span>真澄さん</span>
-                <span>さすけさん</span>
-                <span>上野さん</span>
-                <span>阿部トレヰルさん</span>
-                <span>壁無心さん</span>
+            <div class="participants-list-container">
+                <h3>✨ご参加予定の皆様 (11名様)✨※壁無心想像年齢順</h3>
+                <div class="participants-list">
+                    <span>夜市さん</span>
+                    <span>暮井戸さん</span>
+                    <span>時計子さん</span>
+                    <span>へーけさん</span>
+                    <span>美奈さん</span>
+                    <span>風来松さん</span>
+                    <span>真澄さん</span>
+                    <span>さすけさん</span>
+                    <span>上野さん</span>
+                    <span>阿部トレヰルさん</span>
+                    <span>壁無心さん</span>
+                </div>
             </div>
+
+            <section>
+                <h2 class="section-title-flyer">ツアー概要</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="icon">🗓️</div>
+                        <h4>開催日</h4>
+                        <p class="main-info-text">2025年6月1日 (日)</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon">💰</div>
+                        <h4>料金 (お一人様)</h4>
+                        <p class="main-info-text">9,000円 <span class="sub-info-text">(税込)</span></p>
+                        <p class="text-xs mt-1" style="font-size:7pt;">(ガイド料、臥龍山荘入館、貸切船、食事、飲物込)</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon">🌟</div>
+                        <h4>ツアーの目玉</h4>
+                        <ul class="list-disc">
+                            <li>大洲の町並み散策！ガイド付き！</li>
+                            <li>新造船「清流1号」貸切遊覧！</li>
+                            <li>日本三大鵜飼を体験！</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="section-title-flyer">お楽しみポイント</h2>
+                <ul class="enjoy-points-list">
+                    <li><span class="point-icon">🏞️</span><div><span class="font-bold">歴史的町並み：</span><a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>の認証を受けた大洲の歴史的な町並みを散策。<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘</a>も見学。</div></li>
+                    <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>ピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
+                    <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「合わせうかい」！鵜匠の技は必見！</div></li>
+                    <li><span class="point-icon">🍽️</span><div><span class="font-bold">船上のお食事：</span>鵜飼を観ながら、<a href="https://www.ozu-eemon.com/" target="_blank" class="eemono-link">大洲ええもんセレクション</a>に選定されている季節の美味しいお食事と地酒などの飲み物をお楽しみいただけます。</div></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 class="section-title-flyer">当日のスケジュール</h2>
+                 <div class="schedule-plans-grid">
+                    <div>
+                        <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/c89Tot9mSujYW6PR6" target="_blank">Aプラン: JR松山駅利用</a></h4>
+                        <div class="schedule-item"><strong>14:30</strong> <span>JR松山駅発 (特急)</span></div>
+                        <div class="schedule-item"><strong>15:08</strong> <span>JR伊予大洲駅着</span></div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://transfer-internal.navitime.biz/uwajima-bus/pc/transfer/TransferSearch?startName=%E6%9D%BE%E5%B1%B1%E5%B8%82%E9%A7%85&start=00026286&startSpot=&startSpotLon=&startSpotLat=&startCoord=&goalName=%E5%A4%A7%E6%B4%B2%E6%9C%AC%E7%94%BA&goal=00042729&goalSpot=&goalSpotLon=&goalSpotLat=&goalCoord=&month_=2025%2F6%2F1&year=2025&month=6&day=1&hour=13&minute=36&basis=1&sort=0&wspeed=standard" target="_blank">Bプラン: 宇和島バス 市駅発</a></h4>
+                        <div class="schedule-item"><strong>13:45</strong> <span>伊予鉄松山市駅前発</span></div>
+                        <div class="schedule-item"><strong>14:47</strong> <span>大洲本町駅着</span></div>
+                    </div>
+                </div>
+                <h4 class="font-semibold text-center text-sm mb-1 mt-2" style="color:#33691E;">--- 共通スケジュール ---</h4>
+                <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・<a href="https://jp.visitozu.com/archives/feature/3515" target="_blank">ガイド付き大洲まち歩き開始</a> (<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘見学</a>含)</span></div>
+                <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (<a href="https://www.garyu-brewing.com/" target="_blank">臥龍醸造</a>にて休憩など)</span></div>
+                <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車（へいけさん、阿部トレヰルさん合流）</span></div>
+                                
+                <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
+                    <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> 
+                    <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+                    <a href="2025_ukai_flyer.pdf" download="大洲鵜飼ツアーチラシ2025.pdf" class="pdf-download-link">2025大洲うかいチラシDL</a>
+                </div>
+                
+                <div class="menu-section">
+                    <h3 class="menu-title">～鵜飼舟　御献立～</h3>
+                    <div class="menu-category">先付け</div>
+                    <p class="menu-item">豆腐の麦味噌漬け <span class="eemono">～ええもんセレクションより～</span></p>
+                    <div class="menu-category">御造里</div>
+                    <p class="menu-item">桜鯛のお造り</p>
+                    <p class="menu-item">鰤のお造り</p>
+                    <p class="menu-item">鱧の湯引き 梅肉添え <span class="eemono">～ええもんセレクションより～</span></p>
+                    <div class="menu-category">酢の物</div>
+                    <p class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</p>
+                    <div class="menu-category">煮物</div>
+                    <p class="menu-item">海老の旨煮、南瓜の含め煮、椎茸と昆布の佃煮 <span class="eemono">～ええもんセレクションより～</span>、厚揚げの炊き合わせ、ブロッコリーの出汁浸し</p>
+                    <div class="menu-category">煮魚</div>
+                    <p class="menu-item">天魚（あまご）の甘露煮 <span class="eemono">～ええもんセレクションより～</span></p>
+                    <div class="menu-category">揚物（天麩羅）</div>
+                    <p class="menu-item">海老と季節野菜の盛り合わせ（海老、蓮根、茄子、椎茸、人参、いんげん、薩摩芋、おくら）</p>
+                    <div class="menu-category">御食事</div>
+                    <p class="menu-item">彩り巻き寿司、俵型御飯</p>
+                    <div class="menu-category">香の物</div>
+                    <p class="menu-item">胡瓜の浅漬け</p>
+                    <div class="menu-category">水菓子</div>
+                    <p class="menu-item">季節のメロン</p>
+                    <div class="menu-category">大皿</div>
+                    <p class="menu-item">大洲名物 いもたき</p>
+                    <p class="menu-item">瀬戸内名物 鯛そうめん</p>
+                    <div class="menu-category">お飲み物</div>
+                    <p class="menu-item">ソフトドリンク各種（緑茶、ほうじ茶など）</p>
+                    <p class="menu-item">「くらふとコーラ ぞぶる」 <span class="eemono">～ええもんセレクションより～</span></p>
+                    <p class="menu-item">地元銘酒 養老酒造（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p>
+                </div>
+
+                <div class="dual-image-container">
+                    <div class="image-wrapper image-container-blurred-edges">
+                        <img src="usho_image.png" alt="鵜匠の迫力ある姿">
+                    </div>
+                    <div class="image-wrapper image-container-blurred-edges">
+                        <img src="hanabi_image.jpg" alt="夜空を彩る花火">
+                    </div>
+                </div>
+
+                <div class="schedule-item"><strong>20:40頃</strong> <span>うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
+                <div class="schedule-item"><strong>20:58以降</strong> <span>JR伊予大洲駅より松山方面へ</span></div>
+                <p class="text-xs text-center mt-1 text-gray-500" style="font-size:7.5pt;">※時間は目安です。当日の状況により変更になる場合があります。</p>
+            </section>
+
+            <section class="highlight-box mt-3">
+                <h3>ご参加の皆様へのお願い</h3>
+                <ul class="list-disc list-inside space-y-0.5">
+                    <li>当日は「大洲のうかい開き」イベント日です。報道機関の取材があるかもしれませんので、その際は温かいコメントにご協力ください。</li>
+                    <li>SNS等で「#大洲のうかい開き」「#大洲のうかい」「#ホヤケン」をつけて魅力発信いただけると嬉しいです！</li>
+                </ul>
+            </section>
+
+            <footer class="footer-flyer">
+                <h4>その他注意事項</h4>
+                <ul class="space-y-px">
+                    <li>歩きやすい服装・靴でご参加ください。川風は涼しい場合があるので羽織るものがあると便利です。</li>
+                    <li>帰りのJR切符は事前購入をおすすめします。(汽車内で購入可能？スマえきちゃんアプリ等)</li>
+                    <li>大洲のうかいは、肱川の状況により中止となる場合があります。例えば、降雨やダムの放流により川が増水した場合、参加者の安全を考慮し中止とすることがあります。中止の判断は、通常、当日の午前10時までに行われます。<br>中止となった場合の対応として、鵜飼貸切料のキャンセル料は発生しません。ただし、お食事はご予約いただいたお店にてお楽しみいただけます。</li>
+                </ul>
+                <div class="footer-contact-info">
+                    <p>ツアー企画：ホヤケン＆壁無心</p>
+                    <p>大洲観光情報参考：<br>
+                        大洲観光総合案内所 TEL: 0893-57-6655<br>
+                        <a href="https://jp.visitozu.com/" target="_blank">大洲市観光情報サイト visit OZU (jp.visitozu.com)</a>
+                    </p>
+                </div>
+            </footer>
         </div>
-
-        <section>
-            <h2 class="section-title-flyer">ツアー概要</h2>
-            <div class="info-grid">
-                <div class="info-item">
-                    <div class="icon">🗓️</div>
-                    <h4>開催日</h4>
-                    <p class="main-info-text">2025年6月1日 (日)</p>
-                </div>
-                <div class="info-item">
-                    <div class="icon">💰</div>
-                    <h4>料金 (お一人様)</h4>
-                    <p class="main-info-text">9,000円 <span class="sub-info-text">(税込)</span></p>
-                    <p class="text-xs mt-1" style="font-size:7pt;">(ガイド料、臥龍山荘入館、貸切船、食事、飲物込)</p>
-                </div>
-                <div class="info-item">
-                    <div class="icon">🌟</div>
-                    <h4>ツアーの目玉</h4>
-                    <ul class="list-disc">
-                        <li>大洲の町並み散策！ガイド付き！</li>
-                        <li>新造船「清流1号」貸切遊覧！</li>
-                        <li>日本三大鵜飼を体験！</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title-flyer">お楽しみポイント</h2>
-            <ul class="enjoy-points-list">
-                <li><span class="point-icon">🏞️</span><div><span class="font-bold">歴史的町並み：</span><a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>の認証を受けた大洲の歴史的な町並みを散策。<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘</a>も見学。</div></li>
-                <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>ピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
-                <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「合わせうかい」！鵜匠の技は必見！</div></li>
-                <li><span class="point-icon">🍽️</span><div><span class="font-bold">船上のお食事：</span>鵜飼を観ながら、大洲ええもんセレクションに選定されている季節の美味しいお食事と地酒などの飲み物をお楽しみいただけます。</div></li>
-            </ul>
-        </section>
-
-        <section>
-            <h2 class="section-title-flyer">当日のスケジュール</h2>
-             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-3 mb-2">
-                <div>
-                    <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/c89Tot9mSujYW6PR6" target="_blank">Aプラン: JR松山駅利用</a></h4>
-                    <div class="schedule-item"><strong>14:30</strong> <span>JR松山駅発 (特急)</span></div>
-                    <div class="schedule-item"><strong>15:08</strong> <span>JR伊予大洲駅着</span></div>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://transfer-internal.navitime.biz/uwajima-bus/pc/transfer/TransferSearch?startName=%E6%9D%BE%E5%B1%B1%E5%B8%82%E9%A7%85&start=00026286&startSpot=&startSpotLon=&startSpotLat=&startCoord=&goalName=%E5%A4%A7%E6%B4%B2%E6%9C%AC%E7%94%BA&goal=00042729&goalSpot=&goalSpotLon=&goalSpotLat=&goalCoord=&month_=2025%2F6%2F1&year=2025&month=6&day=1&hour=13&minute=36&basis=1&sort=0&wspeed=standard" target="_blank">Bプラン: 宇和島バス 市駅発</a></h4>
-                    <div class="schedule-item"><strong>13:45</strong> <span>伊予鉄松山市駅前発</span></div>
-                    <div class="schedule-item"><strong>14:47</strong> <span>大洲本町駅着</span></div>
-                </div>
-            </div>
-            <h4 class="font-semibold text-center text-sm mb-1" style="color:#33691E;">--- 共通スケジュール ---</h4>
-            <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・<a href="https://jp.visitozu.com/archives/feature/3515" target="_blank">ガイド付き大洲まち歩き開始</a> (<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘見学</a>含)</span></div>
-            <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (休憩・散策など)（へいけさん、阿部トレヰルさん合流）</span></div>
-            <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車</span></div>
-            
-            <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
-                <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> 
-                <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
-                <a href="2025_ukai_flyer.pdf" download="大洲鵜飼ツアーチラシ2025.pdf" class="pdf-download-link">2025大洲のうかいチラシDL</a>
-            </div>
-
-            <div class="dual-image-container">
-                <div class="image-wrapper image-container-blurred-edges">
-                    <img src="usho_image.png" alt="鵜匠の迫力ある姿">
-                </div>
-                <div class="image-wrapper image-container-blurred-edges">
-                    <img src="hanabi_image.jpg" alt="夜空を彩る花火">
-                </div>
-            </div>
-
-            <div class="schedule-item"><strong>20:40頃</strong> <span>うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
-            <div class="schedule-item"><strong>20:58以降</strong> <span>JR伊予大洲駅より松山方面へ</span></div>
-            <p class="text-xs text-center mt-1 text-gray-500" style="font-size:7.5pt;">※時間は目安です。当日の状況により変更になる場合があります。</p>
-        </section>
-
-        <section class="highlight-box mt-3">
-            <h3>ご参加の皆様へのお願い</h3>
-            <ul class="list-disc list-inside space-y-0.5">
-                <li>当日は「大洲のうかい開き」イベント日です。報道機関の取材があるかもしれませんので、その際は温かいコメントにご協力ください。</li>
-                <li>SNS等で「#大洲のうかい開き」「#大洲のうかい」「#ホヤケン」をつけて魅力発信いただけると嬉しいです！</li>
-            </ul>
-        </section>
-
-        <footer class="footer-flyer">
-            <h4>その他注意事項</h4>
-            <ul class="space-y-px">
-                <li>自由時間中の休憩場所については、現在検討中です。</li>
-                <li>天候により鵜飼が中止になる場合があります (荒天時は前日午前中に判断、キャンセル料なし)。</li>
-                <li>歩きやすい服装・靴でご参加ください。川風は涼しい場合があるので羽織るものがあると便利です。</li>
-                <li>帰りのJR切符は事前購入をおすすめします。(汽車内で購入可能？スマえきちゃんアプリ等)</li>
-            </ul>
-            <div class="footer-contact-info">
-                <p>ツアー企画：ホヤケン＆壁無心</p>
-                <p>大洲観光情報参考：<br>
-                    大洲観光総合案内所 TEL: 0893-57-6655<br>
-                    <a href="https://jp.visitozu.com/" target="_blank">大洲市観光情報サイト visit OZU (jp.visitozu.com)</a>
-                </p>
-            </div>
-        </footer>
     </div>
     </body>
 </html>
