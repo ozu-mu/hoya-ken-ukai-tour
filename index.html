@@ -292,33 +292,61 @@
 
         .menu-section {
             margin: 4mm 0;
-            padding: 4mm;
+            padding: 3mm; /* Slightly reduced padding */
             background-color: #FAFAD2; /* LightGoldenrodYellow */
             border: 1px solid #EEE8AA; /* PaleGoldenrod */
             border-radius: 8px;
         }
         .menu-title {
-            font-size: 13pt;
+            font-size: 12.5pt; /* Slightly reduced */
             font-weight: bold;
             color: #8B4513; /* SaddleBrown */
             text-align: center;
-            margin-bottom: 3mm;
+            margin-bottom: 2.5mm; /* Slightly reduced */
             border-bottom: 1px solid #DAA520; /* Goldenrod */
             padding-bottom: 1.5mm;
         }
+        .menu-category-item-group {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 1mm;
+            align-items: baseline;
+        }
         .menu-category {
-            font-size: 10.5pt;
+            font-size: 10pt;
             font-weight: bold;
             color: #A0522D; /* Sienna */
-            margin-top: 2.5mm;
-            margin-bottom: 1mm;
+            margin-right: 0.8em;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .menu-items-container {
+            flex-grow: 1;
         }
         .menu-item {
-            font-size: 9pt;
+            font-size: 8.5pt;
             color: #5D4037; /* Brownish */
-            line-height: 1.6;
-            margin-left: 1em;
+            line-height: 1.55;
+            display: inline;
         }
+        .menu-item + .menu-item::before {
+            content: "、";
+            margin-right: 0.2em;
+        }
+        .menu-item.block-item {
+            display: block;
+            margin-left: 1em; /* Indent block items if they are truly block */
+        }
+         .menu-item.block-item + .menu-item.block-item::before { /* Remove separator for consecutive block items */
+            content: "";
+        }
+        .menu-item.sub-item { /* For veggie list */
+            font-size: 8pt;
+            margin-left: 0.5em; /* Smaller indent for sub-items */
+            display: inline; /* Keep on same line as parent if possible */
+        }
+
+
         .menu-item .eemono {
             font-size: 0.8em;
             color: #CD853F; /* Peru */
@@ -505,7 +533,7 @@
             <section class="intro-section">
                 <div class="intro-text">
                     いつも<a href="https://hoyaken.wixsite.com/hoyaken" target="_blank">ホヤケン</a>をご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
-                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
+                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
                 </div>
                 <div class="intro-image-container image-container-blurred-edges">
                     <img src="ukai_image.png" alt="鵜飼の情景">
@@ -513,7 +541,7 @@
             </section>
 
             <div class="participants-list-container">
-                <h3>✨ご参加予定の皆様 (11名様)✨</h3>
+                <h3>✨ご参加予定の皆様 (11名様)✨※壁無心想像年齢順</h3>
                 <div class="participants-list">
                     <span>夜市さん</span>
                     <span>暮井戸さん</span>
@@ -591,34 +619,18 @@
                 </div>
                 
                 <div class="menu-section">
-                    <h3 class="menu-title">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～</h3>
-                    <div class="menu-category">先付け</div>
-                    <p class="menu-item">豆腐の麦味噌漬け <span class="eemono">～ええもんセレクションより～</span></p>
-                    <div class="menu-category">お造り</div>
-                    <p class="menu-item">桜鯛</p>
-                    <p class="menu-item">鰤</p>
-                    <p class="menu-item">鱧の湯引き 梅肉添え <span class="eemono">～ええもんセレクションより～</span></p>
-                    <div class="menu-category">酢の物</div>
-                    <p class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</p>
-                    <div class="menu-category">煮物</div>
-                    <p class="menu-item">海老の旨煮、南瓜の含め煮、椎茸と昆布の佃煮 <span class="eemono">～ええもんセレクションより～</span>、厚揚げの炊き合わせ、ブロッコリーの出汁浸し</p>
-                    <div class="menu-category">煮魚</div>
-                    <p class="menu-item">天魚（あまご）の甘露煮 <span class="eemono">～ええもんセレクションより～</span></p>
-                    <div class="menu-category">揚物（天麩羅）</div>
-                    <p class="menu-item">海老と季節野菜の盛り合わせ（海老、蓮根、茄子、椎茸、人参、いんげん、薩摩芋、おくら）</p>
-                    <div class="menu-category">御食事</div>
-                    <p class="menu-item">彩り巻き寿司、俵型御飯</p>
-                    <div class="menu-category">香の物</div>
-                    <p class="menu-item">胡瓜の浅漬け</p>
-                    <div class="menu-category">水菓子</div>
-                    <p class="menu-item">季節のメロン</p>
-                    <div class="menu-category">大皿</div>
-                    <p class="menu-item">大洲名物 いもたき</p>
-                    <p class="menu-item">瀬戸内名物 鯛そうめん</p>
-                    <div class="menu-category">お飲み物</div>
-                    <p class="menu-item">ソフトドリンク各種（お茶、水など）</p>
-                    <p class="menu-item"><a href="https://www.senmiekisu.co.jp/zoburu-landing/#section-about" target="_blank" class="cola-link">「くらふとコーラ ぞぶる」</a> <span class="eemono">～ええもんセレクションより～</span></p>
-                    <p class="menu-item">地元銘酒 <a href="https://yoroshuzo.jp/" target="_blank" class="brewery-link">養老酒造</a>（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p>
+                    <h3 class="menu-title">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～　</h3>
+                    <div class="menu-category-item-group"><span class="menu-category">先付け:</span><div class="menu-items-container"><span class="menu-item">豆腐の麦味噌漬け <span class="eemono">～ええもんセレクションより～</span></span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">お造り:</span><div class="menu-items-container"><span class="menu-item">桜鯛</span><span class="menu-item">鰤</span><span class="menu-item">鱧の湯引き 梅肉添え <span class="eemono">～ええもんセレクションより～</span></span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">酢の物:</span><div class="menu-items-container"><span class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">煮物:</span><div class="menu-items-container"><span class="menu-item">海老の旨煮、南瓜の含め煮、椎茸と昆布の佃煮 <span class="eemono">～ええもんセレクションより～</span>、厚揚げの炊き合わせ、ブロッコリーの出汁浸し</span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">煮魚:</span><div class="menu-items-container"><span class="menu-item">天魚（あまご）の甘露煮 <span class="eemono">～ええもんセレクションより～</span></span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">揚物（天麩羅）:</span><div class="menu-items-container"><span class="menu-item">海老と季節野菜の盛り合わせ <span class="menu-item sub-item">（海老、蓮根、茄子、椎茸、人参、いんげん、薩摩芋、おくら）</span></span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">御食事:</span><div class="menu-items-container"><span class="menu-item">彩り巻き寿司</span><span class="menu-item">俵型御飯</span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">香の物:</span><div class="menu-items-container"><span class="menu-item">胡瓜の浅漬け</span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">水菓子:</span><div class="menu-items-container"><span class="menu-item">季節のメロン</span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">大皿:</span><div class="menu-items-container"><span class="menu-item">大洲名物 いもたき</span><span class="menu-item">瀬戸内名物 鯛そうめん</span></div></div>
+                    <div class="menu-category-item-group"><span class="menu-category">お飲み物:</span><div class="menu-items-container"><span class="menu-item">ソフトドリンク各種（お茶、水など）</span><p class="menu-item block-item" style="margin-left:0; margin-top:0.5mm;"><a href="https://www.senmiekisu.co.jp/zoburu-landing/#section-about" target="_blank" class="cola-link">「くらふとコーラ ぞぶる」</a> <span class="eemono">～ええもんセレクションより～</span></p><p class="menu-item block-item" style="margin-left:0;">地元銘酒 <a href="https://yoroshuzo.jp/" target="_blank" class="brewery-link">養老酒造</a>（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p></div></div>
                 </div>
 
                 <div class="dual-image-container">
