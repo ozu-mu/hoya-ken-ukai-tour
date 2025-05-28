@@ -59,6 +59,14 @@
             line-height: 1.7;
             text-align: center; /* Center text on mobile */
         }
+        .intro-text a { /* Style for the link in intro text */
+            color: #D84315; /* Matching other highlight colors */
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .intro-text a:hover {
+            color: #BF360C; /* Darker shade on hover */
+        }
         .intro-image-container {
             flex: 0 0 auto;
             width: 100%;
@@ -183,6 +191,23 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        .return-plans-grid { /* For C/D/E plan layout */
+            display: grid;
+            grid-template-columns: 1fr; /* Default to 1 column for mobile */
+            gap: 3mm;
+            margin-top: 3mm;
+        }
+        @media (min-width: 1024px) { /* lg breakpoint for 3 columns */
+            .return-plans-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023.98px) { /* md breakpoint for 2 columns */
+             .return-plans-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
 
         .schedule-item {
             margin-bottom: 2mm;
@@ -299,11 +324,11 @@
             color: #CD853F; /* Peru */
             font-style: italic;
         }
-        .menu-item .eemono a { /* Link style for eemono */
+        .menu-item .eemono a, .menu-item a.brewery-link, .menu-item a.cola-link { /* Link style for eemono, brewery and cola */
             color: #CD853F;
             text-decoration: underline;
         }
-         .menu-item .eemono a:hover {
+         .menu-item .eemono a:hover, .menu-item a.brewery-link:hover, .menu-item a.cola-link:hover {
             color: #A0522D;
         }
 
@@ -328,13 +353,20 @@
             color: #FFB300;
             line-height: 1.35;
         }
-        .enjoy-points-list a {
+        .enjoy-points-list a { /* General link style in enjoy points */
             color: #0277BD;
             text-decoration: underline;
         }
         .enjoy-points-list a:hover {
             color: #01579B;
         }
+        .enjoy-points-list .eemono-link { /* Specific style for eemono link */
+             color: #D84315; /* Matching other highlight colors */
+        }
+        .enjoy-points-list .eemono-link:hover {
+            color: #BF360C;
+        }
+
         .pdf-download-link {
             font-size: 7.5pt;
             margin-left: 1em;
@@ -451,6 +483,7 @@
 
             .info-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; }
             .schedule-plans-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .return-plans-grid { grid-template-columns: repeat(3, 1fr) !important; } /* Ensure 3 columns for print */
             .dual-image-container { flex-direction: row !important; align-items: flex-start !important; }
             .dual-image-container .image-wrapper { max-width: none !important; }
             .participants-list { grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)) !important; }
@@ -471,8 +504,8 @@
 
             <section class="intro-section">
                 <div class="intro-text">
-                    いつもホヤケンをご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
-                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
+                    いつも<a href="https://hoyaken.wixsite.com/hoyaken" target="_blank">ホヤケン</a>をご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
+                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
                 </div>
                 <div class="intro-image-container image-container-blurred-edges">
                     <img src="ukai_image.png" alt="鵜飼の情景">
@@ -480,7 +513,7 @@
             </section>
 
             <div class="participants-list-container">
-                <h3>✨ご参加予定の皆様 (11名様)✨※壁無心想像年齢順</h3>
+                <h3>✨ご参加予定の皆様 (11名様)✨</h3>
                 <div class="participants-list">
                     <span>夜市さん</span>
                     <span>暮井戸さん</span>
@@ -492,7 +525,7 @@
                     <span>さすけさん</span>
                     <span>上野さん</span>
                     <span>阿部トレヰルさん</span>
-                    <span>壁無心さん</span>
+                    <span>壁無心</span>
                 </div>
             </div>
 
@@ -526,8 +559,8 @@
                 <h2 class="section-title-flyer">お楽しみポイント</h2>
                 <ul class="enjoy-points-list">
                     <li><span class="point-icon">🏞️</span><div><span class="font-bold">歴史的町並み：</span><a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>の認証を受けた大洲の歴史的な町並みを散策。<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘</a>も見学。</div></li>
-                    <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>ピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
-                    <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「合わせうかい」！鵜匠の技は必見！</div></li>
+                    <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>インバウンド用に座席を広くしたピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
+                    <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「<a href="https://jp.visitozu.com/archives/feature/132" target="_blank">合わせうかい</a>」！鵜匠の技は必見！</div></li>
                     <li><span class="point-icon">🍽️</span><div><span class="font-bold">船上のお食事：</span>鵜飼を観ながら、<a href="https://www.ozu-eemon.com/" target="_blank" class="eemono-link">大洲ええもんセレクション</a>に選定されている季節の美味しいお食事と地酒などの飲み物をお楽しみいただけます。</div></li>
                 </ul>
             </section>
@@ -553,17 +586,17 @@
                                 
                 <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
                     <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> 
-                    <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切船「清流1号」にてお食事)</span>
+                    <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切遊覧船「清流1号」にてお食事)</span>
                     <a href="2025_ukai_flyer.pdf" download="大洲鵜飼ツアーチラシ2025.pdf" class="pdf-download-link">2025大洲うかいチラシDL</a>
                 </div>
                 
                 <div class="menu-section">
-                    <h3 class="menu-title">～鵜飼舟　御献立～</h3>
+                    <h3 class="menu-title">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～</h3>
                     <div class="menu-category">先付け</div>
                     <p class="menu-item">豆腐の麦味噌漬け <span class="eemono">～ええもんセレクションより～</span></p>
-                    <div class="menu-category">御造里</div>
-                    <p class="menu-item">桜鯛のお造り</p>
-                    <p class="menu-item">鰤のお造り</p>
+                    <div class="menu-category">お造り</div>
+                    <p class="menu-item">桜鯛</p>
+                    <p class="menu-item">鰤</p>
                     <p class="menu-item">鱧の湯引き 梅肉添え <span class="eemono">～ええもんセレクションより～</span></p>
                     <div class="menu-category">酢の物</div>
                     <p class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</p>
@@ -583,9 +616,9 @@
                     <p class="menu-item">大洲名物 いもたき</p>
                     <p class="menu-item">瀬戸内名物 鯛そうめん</p>
                     <div class="menu-category">お飲み物</div>
-                    <p class="menu-item">ソフトドリンク各種（緑茶、ほうじ茶など）</p>
-                    <p class="menu-item">「くらふとコーラ ぞぶる」 <span class="eemono">～ええもんセレクションより～</span></p>
-                    <p class="menu-item">地元銘酒 養老酒造（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p>
+                    <p class="menu-item">ソフトドリンク各種（お茶、水など）</p>
+                    <p class="menu-item"><a href="https://www.senmiekisu.co.jp/zoburu-landing/#section-about" target="_blank" class="cola-link">「くらふとコーラ ぞぶる」</a> <span class="eemono">～ええもんセレクションより～</span></p>
+                    <p class="menu-item">地元銘酒 <a href="https://yoroshuzo.jp/" target="_blank" class="brewery-link">養老酒造</a>（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p>
                 </div>
 
                 <div class="dual-image-container">
@@ -598,7 +631,32 @@
                 </div>
 
                 <div class="schedule-item"><strong>20:40頃</strong> <span>うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
-                <div class="schedule-item"><strong>20:58以降</strong> <span>JR伊予大洲駅より松山方面へ</span></div>
+                
+                <h4 class="font-semibold text-center text-sm mb-1 mt-3" style="color:#33691E;">--- お帰りのご案内 ---</h4>
+                <div class="return-plans-grid">
+                    <div>
+                        <h5 class="font-semibold text-center text-xs mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/cq28w5HVmPhn2vTb9" target="_blank">Cプラン: JR普通列車 内子線</a></h5>
+                        <div class="schedule-item"><strong>20:54</strong> <span>JR伊予大洲駅発 (普通)</span></div>
+                        <div class="schedule-item"><strong>21:46</strong> <span>JR伊予市駅着 終点</span></div>
+                        <div class="schedule-item"><strong>21:54</strong> <span>郡中港駅発 (伊予鉄道)</span></div>
+                        <div class="schedule-item"><strong>22:23</strong> <span>松山市駅着</span></div>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-center text-xs mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/Cuh6xmeKcRYdt8ma8" target="_blank">Dプラン: JR普通列車 予讃線</a></h5>
+                        <div class="schedule-item"><strong>20:58</strong> <span>JR伊予大洲駅発 (普通)</span></div>
+                        <div class="schedule-item"><strong>22:03</strong> <span>JR伊予市駅着</span></div>
+                        <div class="schedule-item"><strong>22:26</strong> <span>JR松山駅着</span></div>
+                        <div class="schedule-item"><strong>22:29</strong> <span>郡中港駅発（伊予鉄道）</span></div>
+                        <div class="schedule-item"><strong>22:53</strong> <span>鉄松山市駅着</span></div>
+                    </div>
+                    <div>
+                        <h5 class="font-semibold text-center text-xs mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/4yiN2YmAzfkmmBap6" target="_blank">Eプラン: JR特急利用 (D乗り遅れ時)</a></h5>
+                        <div class="schedule-item"><span>20:58の普通列車に乗り遅れた場合</span></div>
+                        <div class="schedule-item"><span>伊予大洲駅近く「<a href="https://maps.app.goo.gl/4QgnvBPPTQoZwbgcA" target="_blank">創作</a>」で待機</span></div>
+                        <div class="schedule-item"><strong>22:11</strong> <span>JR伊予大洲駅発 (特急宇和海)</span></div>
+                        <div class="schedule-item"><strong>22:47</strong> <span>JR松山駅着</span></div>
+                    </div>
+                </div>
                 <p class="text-xs text-center mt-1 text-gray-500" style="font-size:7.5pt;">※時間は目安です。当日の状況により変更になる場合があります。</p>
             </section>
 
