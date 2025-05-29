@@ -306,6 +306,15 @@
             border-bottom: 1px solid #DAA520; /* Goldenrod */
             padding-bottom: 1.5mm;
         }
+        .menu-restaurant-link {
+            font-size: 0.8em;
+            font-weight: normal;
+            color: #A0522D;
+            text-decoration: underline;
+        }
+        .menu-restaurant-link:hover {
+            color: #5D4037;
+        }
         .menu-category-item-group {
             display: flex;
             flex-wrap: wrap;
@@ -329,7 +338,7 @@
             line-height: 1.55;
             display: inline;
         }
-        .menu-item + .menu-item::before {
+        .menu-item + .menu-item:not(.block-item)::before { /* Add separator only for inline items */
             content: "、";
             margin-right: 0.2em;
         }
@@ -533,7 +542,7 @@
             <section class="intro-section">
                 <div class="intro-text">
                     いつも<a href="https://hoyaken.wixsite.com/hoyaken" target="_blank">ホヤケン</a>をご愛顧いただき誠にありがとうございます！<br>ホヤケン常連様限定で、初夏の風物詩「大洲のうかい」を満喫する特別な日帰りツアーを企画いたしました。<br>
-                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、<br>清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
+                    持続可能な観光まちづくりで世界から注目されている歴史ある大洲の町並み散策と、清流肱川の幻想的な鵜飼を、新しい遊覧船「清流1号」貸切でゆったりお楽しみください♪
                 </div>
                 <div class="intro-image-container image-container-blurred-edges">
                     <img src="ukai_image.png" alt="鵜飼の情景">
@@ -575,7 +584,7 @@
                         <div class="icon">🌟</div>
                         <h4>ツアーの目玉</h4>
                         <ul class="list-disc">
-                            <li>大洲の町並み散策！ガイド付き！</li>
+                            <li>認定案内人と巡る町並み散策！</li>
                             <li>新造船「清流1号」貸切遊覧！</li>
                             <li>日本三大鵜飼を体験！</li>
                         </ul>
@@ -600,7 +609,7 @@
                         <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title"><a href="https://maps.app.goo.gl/c89Tot9mSujYW6PR6" target="_blank">Aプラン: JR松山駅利用</a></h4>
                         <div class="schedule-item"><strong>14:30</strong> <span>JR松山駅発 (特急)</span></div>
                         <div class="schedule-item"><strong>15:08</strong> <span>JR伊予大洲駅着</span></div>
-                        <div class="schedule-item"><strong>15:17</strong> <span>市内循環バス(ぐるりんおおず)右回り総合福祉センター行(大洲駅前発) </span></div>
+                        <div class="schedule-item"><strong>15:17</strong> <span>市内循環バス(ぐるりんおおず)右回り総合福祉センター行 (大洲駅前発)</span></div>
                         <div class="schedule-item"><strong>15:23</strong> <span>大洲まちの駅あさもや着</span></div>
                     </div>
                     <div>
@@ -612,9 +621,9 @@
                     </div>
                 </div>
                 <h4 class="font-semibold text-center text-sm mb-1 mt-2" style="color:#33691E;">--- 共通スケジュール ---</h4>
-                <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・<a href="https://jp.visitozu.com/archives/feature/3515" target="_blank">ガイド付き大洲まち歩き開始</a> (<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘見学</a>含)</span></div>
-                <div class="schedule-item"><strong>17:00頃</strong> <span>自由時間 (<a href="https://www.garyu-brewing.com/" target="_blank">臥龍醸造</a>にて休憩など)</span></div>
-                <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車（へいけさん、阿部トレヰルさん合流）</span></div>
+                <div class="schedule-item"><strong>15:30頃</strong> <span>まちの駅あさもや集合・<a href="https://jp.visitozu.com/archives/feature/3515" target="_blank">おおず歴史華回廊認定案内人</a>と巡る名勝指定の美しき建築<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘</a>と<a href="https://jp.visitozu.com/sustainable" target="_blank">町並み再生物語</a></span></div>
+                <div class="schedule-item"><strong>17:00頃</strong> <span>ツアー参加者だけの特権！🍻<a href="https://www.garyu-brewing.com/" target="_blank">臥龍醸造</a>が、特別延長営業！できたてクラフトビールの格別な一杯をあなたに！</span></div>
+                <div class="schedule-item"><strong>18:25頃</strong> <span>うかい送迎バス乗車 大洲まちの駅あさもや発（へーけさん、阿部トレヰルさん合流）</span></div>
                                 
                 <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
                     <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> 
@@ -623,7 +632,7 @@
                 </div>
                 
                 <div class="menu-section">
-                    <h3 class="menu-title">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～　壁無心予想</h3>
+                    <h3 class="menu-title">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～ <a href="https://ozuukai.com/business-details/view/3" target="_blank" class="menu-restaurant-link">うかい登録店 むらや</a>提供</h3>
                     <div class="menu-category-item-group"><span class="menu-category">先付け:</span><div class="menu-items-container"><span class="menu-item">豆腐の麦味噌漬け <span class="eemono">～ええもんセレクションより～</span></span></div></div>
                     <div class="menu-category-item-group"><span class="menu-category">お造り:</span><div class="menu-items-container"><span class="menu-item">桜鯛</span><span class="menu-item">鰤</span><span class="menu-item">鱧の湯引き 梅肉添え <span class="eemono">～ええもんセレクションより～</span></span></div></div>
                     <div class="menu-category-item-group"><span class="menu-category">酢の物:</span><div class="menu-items-container"><span class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</span></div></div>
