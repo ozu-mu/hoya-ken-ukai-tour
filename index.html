@@ -7,123 +7,143 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* Base styles */
         body {
             font-family: 'Noto Sans JP', sans-serif;
             color: #333333;
-            margin: 0; /* Removed auto margin for full width on mobile */
+            margin: 0 auto;
             box-sizing: border-box;
-            background-color: #f0f0f0; 
+            background-color: #f0f0f0; /* Add a light background for web view to distinguish page */
         }
-        .page-container {
-            max-width: 100%; /* Full width for mobile */
-            margin: 0 auto; 
-            background-color: #FFFFFF; /* White background for the page content itself */
+        .page-container { /* New wrapper for web view centering */
+            max-width: 210mm; /* A4 Width for web view */
+            margin: 10mm auto; /* Centering with some margin */
+            box-shadow: 0 0 15px rgba(0,0,0,0.15); /* Add shadow for page effect on web */
         }
         .page {
-            padding: 5mm; /* Reduced padding for mobile */
+            padding: 10mm;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
+            background-color: #FFFFFF;
         }
-
-        /* Header */
         .header-gradient {
             background: linear-gradient(135deg, #B2EBF2, #E1F5FE);
             color: #01579B;
-            padding: 10mm 5mm; /* Increased top/bottom padding */
+            padding: 7mm 5mm;
             text-align: center;
             border-radius: 8px;
             margin-bottom: 4mm;
         }
         .header-gradient h1 {
-            font-size: 16pt; /* Adjusted for mobile */
+            font-size: 19pt;
             font-weight: 700;
             margin-bottom: 1.5mm;
             text-shadow: 1px 1px 1px rgba(255,255,255,0.7);
         }
         .header-gradient p {
-            font-size: 9.5pt; /* Adjusted for mobile */
+            font-size: 10.5pt;
             font-weight: 500;
         }
-
-        /* Introduction Section */
         .intro-section {
             display: flex;
-            flex-direction: column; 
+            flex-direction: column; /* Default to column for mobile */
             align-items: center;
             gap: 3mm;
             margin-top: 1mm;
             margin-bottom: 3mm;
         }
         .intro-text {
-            font-size: 9pt; /* Adjusted for mobile */
+            flex: 1;
+            font-size: 9.5pt;
             color: #3E2723;
             line-height: 1.7;
-            text-align: center; 
+            text-align: center; /* Center text on mobile */
         }
-        .intro-text a {
-            color: #D84315; 
+        .intro-text a { /* Style for the link in intro text */
+            color: #D84315; /* Matching other highlight colors */
             text-decoration: underline;
             font-weight: bold;
         }
         .intro-text a:hover {
-            color: #BF360C; 
+            color: #BF360C; /* Darker shade on hover */
         }
         .intro-image-container {
+            flex: 0 0 auto;
             width: 100%;
-            max-width: 90%; /* Slightly wider for mobile */
+            max-width: 80%;
             text-align: center;
             margin-top: 2mm;
         }
         .intro-image-container img {
             max-width: 100%;
-            max-height: 40mm; /* Adjusted for mobile */
+            max-height: 35mm;
             border-radius: 8px;
             box-shadow: 0 0 8px 6px rgba(255, 255, 255, 0.9),
                         0 0 10px 7px rgba(100, 100, 100, 0.2);
             object-fit: contain;
         }
+        @media (min-width: 768px) {
+            .intro-section {
+                flex-direction: row;
+                align-items: center; /* Vertically center align text and image */
+                text-align: left;
+            }
+            .intro-text {
+                text-align: left;
+            }
+            .intro-image-container {
+                flex: 0 0 35%; /* Adjusted width for image */
+                max-width: 35%;
+                margin-top: 0;
+                margin-left: 3mm; /* Add some space between text and image */
+            }
+        }
 
-        /* Section Title */
         .section-title-flyer {
-            font-size: 13pt; /* Adjusted for mobile */
+            font-size: 14pt;
             font-weight: 700;
             color: #388E3C;
             border-bottom: 2px solid #FFCA28;
             padding-bottom: 1.5mm;
-            margin-top: 5mm; 
+            margin-top: 5mm; /* Adjusted margin */
             margin-bottom: 2.5mm;
             text-align: center;
         }
-
-        /* Highlight Box */
         .highlight-box {
             background-color: #E8F5E9;
             border: 1px solid #C8E6C9;
-            padding: 3mm; /* Adjusted for mobile */
+            padding: 3.5mm;
             border-radius: 6px;
             margin-bottom: 4mm;
         }
         .highlight-box h3 {
-            font-size: 11pt; /* Adjusted for mobile */
+            font-size: 11.5pt;
             font-weight: 700;
             color: #1B5E20;
             margin-bottom: 1.5mm;
         }
         .highlight-box p, .highlight-box li {
-            font-size: 8pt; /* Adjusted for mobile */
+            font-size: 8.5pt;
             color: #2E7D32;
             line-height: 1.55;
         }
-
-        /* Info Grid */
         .info-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2.5mm;
             margin-bottom: 4mm;
         }
+        @media (min-width: 640px) {
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .info-grid {
+                 grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            }
+        }
+
         .info-item {
             background-color: #F1F8E9;
             border: 1px solid #DCEDC1;
@@ -132,26 +152,26 @@
             text-align: center;
         }
         .info-item .icon {
-            font-size: 15pt; /* Adjusted for mobile */
+            font-size: 17pt;
             margin-bottom: 1mm;
             color: #FFB300;
         }
         .info-item h4 {
-            font-size: 9pt; /* Adjusted for mobile */
+            font-size: 9.5pt;
             font-weight: 700;
             color: #558B2F;
             margin-bottom: 0.5mm;
         }
         .info-item .main-info-text {
-            font-size: 10pt; /* Adjusted for mobile */
+            font-size: 10.5pt;
             font-weight: bold;
             color:#D84315;
         }
         .info-item .sub-info-text {
-            font-size: 7pt; /* Adjusted for mobile */
+            font-size: 7.5pt;
         }
         .info-item ul {
-            font-size: 8pt; /* Adjusted for mobile */
+            font-size: 8.5pt;
             color: #33691E;
             text-align: left;
             padding-left: 1em;
@@ -161,83 +181,96 @@
              margin-bottom: 0.3mm;
         }
 
-        /* Schedule Plans Grid */
-        .schedule-plans-grid, .return-plans-grid {
+        .schedule-plans-grid, .return-plans-grid { /* For A/B and C/D/E plan layout */
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 3mm; 
+            grid-template-columns: 1fr; /* Default to 1 column for mobile */
+            gap: 3mm;
             margin-bottom: 2mm;
         }
-        .return-plans-grid {
-            margin-top: 3mm;
+        @media (min-width: 768px) { /* md breakpoint for 2 columns */
+            .schedule-plans-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+             .return-plans-grid { /* For C/D/E plans */
+                grid-template-columns: repeat(2, 1fr); /* Start with 2 columns */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint for 3 columns for return plans */
+            .return-plans-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
-        .plan-container { 
-            background-color: #FAFAFA; 
-            border: 1px solid #E0E0E0; 
+        .plan-container { /* Common style for A, B, C, D, E plan boxes */
+            background-color: #FAFAFA; /* Light grey background */
+            border: 1px solid #E0E0E0; /* Light border */
             border-radius: 6px;
             padding: 3mm;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-            height: 100%; 
+            height: 100%; /* Make boxes in a row same height */
             display: flex;
             flex-direction: column;
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-            text-decoration: none; 
-            color: inherit; 
+            text-decoration: none; /* Remove underline from entire box if it's an <a> */
+            color: inherit; /* Inherit text color */
         }
         .plan-container:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12); 
+            transform: translateY(-5px); /* Pop-up effect */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* Enhanced shadow on hover */
         }
 
-        /* Schedule Item (inside and outside plan containers) */
+
         .schedule-item {
             margin-bottom: 2mm;
             padding-left: 4.5mm;
             position: relative;
-            border-left: 2px solid #AED581; 
-        }
-        .schedule-item strong, .common-schedule-time { /* Time styling for all schedule items */
-            font-size: 8.5pt; /* Adjusted for mobile */
-            font-weight: 700;
-            color: #EF6C00;
-        }
-        .schedule-item span, .common-schedule-text { /* Text styling for all schedule items */
-            font-size: 8pt; /* Adjusted for mobile */
-            /* color: #4E342E; */ /* Color is inherited or overridden by links */
-        }
-         .schedule-item a { 
-            text-decoration: underline;
-            color: #0288D1; 
-        }
-        .schedule-item a:hover {
-            color: #01579B; 
-        }
-        .plan-container .schedule-item:last-child { 
-            margin-bottom: 0;
+            border-left: 2px solid #AED581;
         }
         .schedule-item::before {
             content: '';
             position: absolute;
             left: -4px;
-            top: 4.5px; /* Adjust if font size changes significantly */
+            top: 4.5px;
             width: 7px;
             height: 7px;
             background-color: #AED581;
             border-radius: 50%;
         }
-        .schedule-plan-title { 
-             font-weight: 600; 
-             color: #33691E !important; 
-             font-size: 9.5pt; /* Adjusted for mobile */
+        .schedule-item strong, .common-schedule-time { /* Common styling for time */
+            font-size: 9pt;
+            font-weight: 700;
+            color: #EF6C00;
         }
-        .return-plans-grid .schedule-plan-title {
-            font-size: 8.5pt; /* Slightly smaller for return plan titles */
+        .schedule-item span, .schedule-item a, .common-schedule-text { /* Common styling for text */
+            font-size: 8.5pt;
+            color: #4E342E;
+        }
+        .schedule-item a {
+            text-decoration: underline;
+            color: #0288D1;
+        }
+        .schedule-item a:hover {
+            color: #01579B;
+        }
+        .plan-container .schedule-item:last-child { /* Remove bottom margin for last item in a plan box */
+            margin-bottom: 0;
+        }
+        .schedule-plan-title { /* For A, B, C, D, E plan titles */
+             font-weight: 600;
+             color: #33691E !important;
+             font-size: 10.5pt; /* Make plan titles a bit larger */
+        }
+        .return-plans-grid .schedule-plan-title { /* Specific for C,D,E titles if needed */
+            font-size: 9.5pt; /* Slightly smaller for 3 columns */
         }
 
 
-        /* Image Containers */
-        .image-container-blurred-edges img, .dual-image-container img {
+        .image-container-blurred-edges {
+            text-align: center;
+            margin: 4mm auto;
+            padding: 2px;
+        }
+        .image-container-blurred-edges img {
             max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.9),
@@ -249,208 +282,308 @@
             display: flex;
             flex-direction: column;
             gap: 4mm;
-            margin: 4mm 0; 
+            margin: 4mm 0;
             align-items: center;
         }
         .dual-image-container .image-wrapper {
             flex: 1;
             width: 100%;
-            max-width: 90%; /* Adjusted for mobile */
+            max-width: 90%; /* Increased max-width for mobile */
+        }
+        @media (min-width: 768px) {
+            .dual-image-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .dual-image-container .image-wrapper {
+                 max-width: none;
+            }
         }
         .dual-image-container img {
-            max-height: 50mm; /* Adjusted for mobile */
+            max-width: 100%;
+            max-height: 75mm; /* Increased height for impact */
             object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 0 10px 8px rgba(255, 255, 255, 0.9),
+                        0 0 12px 10px rgba(100, 100, 100, 0.25);
         }
 
-        /* Menu Section */
         .menu-section {
             margin: 4mm 0;
-            padding: 3mm; 
-            background-color: #FAFAD2; 
-            border: 1px solid #EEE8AA; 
+            padding: 3mm;
+            background-color: #FAFAD2;
+            border: 1px solid #EEE8AA;
             border-radius: 8px;
         }
         .menu-title {
-            font-size: 11.5pt; /* Adjusted for mobile */
+            font-size: 12.5pt;
             font-weight: bold;
-            color: #8B4513; 
+            color: #8B4513;
             text-align: center;
-            margin-bottom: 2.5mm; 
-            border-bottom: 1px solid #DAA520; 
+            margin-bottom: 2.5mm;
+            border-bottom: 1px solid #DAA520;
             padding-bottom: 1.5mm;
         }
         .menu-restaurant-link {
-            font-size: 0.8em; font-weight: normal; color: #A0522D; text-decoration: underline;
-        }
-        .menu-restaurant-link:hover { color: #5D4037; }
-        .menu-category-item-group { display: flex; flex-wrap: wrap; margin-bottom: 1mm; align-items: baseline; }
-        .menu-category { font-size: 9.5pt; font-weight: bold; color: #A0522D; margin-right: 0.8em; white-space: nowrap; flex-shrink: 0; }
-        .menu-items-container { flex-grow: 1; }
-        .menu-item { font-size: 8pt; color: #5D4037; line-height: 1.55; display: inline; }
-        .menu-item + .menu-item:not(.block-item)::before { content: "、"; margin-right: 0.2em; }
-        .menu-item.block-item { display: block; margin-left: 1em; }
-        .menu-item.block-item + .menu-item.block-item::before { content: ""; }
-        .menu-item.sub-item { font-size: 7.5pt; margin-left: 0.5em; display: inline; }
-        
-        .menu-item .eemono { font-size: 0.8em; color: #CD853F; font-style: italic; }
-        .menu-item .eemono-link, .menu-item a.eemono-link { /* Specific style for eemono links in menu */
-            color: #D84315; /* Consistent with other .eemono-link from enjoy-points */
+            font-size: 0.85em; /* Slightly larger */
+            font-weight: 600; /* Bolder */
+            color: #A0522D;
             text-decoration: underline;
-            font-style: normal; /* Override italic from .eemono span if needed */
+            padding: 0.5mm 1mm;
+            background-color: #FFF5E1; /* Light background highlight */
+            border-radius: 3px;
         }
-        .menu-item .eemono-link:hover, .menu-item a.eemono-link:hover {
-            color: #BF360C;
+        .menu-restaurant-link:hover {
+            color: #5D4037;
+            background-color: #FFF0D0;
         }
-        .menu-item a.brewery-link, .menu-item a.cola-link { color: #CD853F; text-decoration: underline; }
-        .menu-item a.brewery-link:hover, .menu-item a.cola-link:hover { color: #A0522D; }
-
-        /* Enjoy Points */
-        .enjoy-points-list { font-size: 8.5pt; line-height: 1.65; color: #1B5E20; }
-        .enjoy-points-list li { padding: 1.5mm 0; border-bottom: 1px dashed #C8E6C9; display: flex; align-items: flex-start; }
-        .enjoy-points-list li:last-child { border-bottom: none; }
-        .enjoy-points-list .point-icon { font-size: 1.1em; margin-right: 0.4em; color: #FFB300; line-height: 1.35; }
-        .enjoy-points-list a { color: #0277BD; text-decoration: underline; }
-        .enjoy-points-list a:hover { color: #01579B; }
-        .enjoy-points-list .eemono-link { color: #D84315; } /* Used for "大洲ええもんセレクション" link */
-        .enjoy-points-list .eemono-link:hover { color: #BF360C; }
-
-        /* PDF Download Link */
-        .pdf-download-link {
-            font-size: 7pt; margin-left: 1em; padding: 0.5mm 1mm; background-color: #FFCA28;
-            color: #3E2723; border-radius: 3px; text-decoration: none; font-weight: bold;
-            display: inline-block; margin-top: 1mm;
+        .menu-category-item-group {
+            /* display: flex; */ 
+            /* flex-wrap: wrap; */
+            margin-bottom: 1mm;
+            /* align-items: baseline; */
         }
-        .pdf-download-link:hover { background-color: #FFB300; }
-
-        /* Footer */
-        .footer-flyer { margin-top: auto; padding-top: 3.5mm; border-top: 1px solid #C5E1A5; text-align: center; }
-        .footer-flyer h4 { font-size: 8.5pt; font-weight: 700; color: #1B5E20; margin-bottom: 1mm; text-align: left; }
-        .footer-flyer ul { font-size: 8pt; color: #4E342E; list-style-type: disc; list-style-position: outside; padding-left: 1.5em; text-align: left; margin-left: 0; margin-right: 0; }
-        .footer-flyer ul li a { /* Styling for links within footer list */
-            color: #0288D1; 
+        .menu-category {
+            font-size: 10pt;
+            font-weight: bold;
+            color: #A0522D;
+            margin-right: 0.8em;
+            display: inline-block; 
+            margin-bottom: 0.5mm; 
+        }
+        .menu-items-container {
+            display: inline; 
+        }
+        .menu-item {
+            font-size: 8.5pt;
+            color: #5D4037;
+            line-height: 1.55;
+            display: inline;
+        }
+        .menu-item + .menu-item:not(.block-item)::before {
+            content: "、";
+            margin-right: 0.2em;
+        }
+        .menu-item.block-item {
+            display: block;
+            margin-left: 1em;
+            margin-top: 0.5mm; 
+        }
+         .menu-item.block-item + .menu-item.block-item::before {
+            content: "";
+        }
+        .menu-item.sub-item {
+            font-size: 8pt;
+            margin-left: 0.5em;
+            display: inline;
+        }
+        .menu-item .eemono {
+            font-size: 0.8em;
+            color: #CD853F;
+            font-style: italic;
+        }
+        .menu-item .eemono a, .menu-item a.brewery-link, .menu-item a.cola-link {
+            color: #CD853F;
             text-decoration: underline;
         }
-        .footer-flyer ul li a:hover {
+         .menu-item .eemono a:hover, .menu-item a.brewery-link:hover, .menu-item a.cola-link:hover {
+            color: #A0522D;
+        }
+
+        .enjoy-points-list {
+            font-size: 9pt;
+            line-height: 1.65;
+            color: #1B5E20;
+        }
+        .enjoy-points-list li {
+            padding: 1.5mm 0;
+            border-bottom: 1px dashed #C8E6C9;
+            display: flex;
+            align-items: flex-start;
+        }
+        .enjoy-points-list li:last-child {
+            border-bottom: none;
+        }
+        .enjoy-points-list .point-icon {
+            font-size: 1.15em;
+            margin-right: 0.4em;
+            color: #FFB300;
+            line-height: 1.35;
+        }
+        .enjoy-points-list a {
+            color: #0277BD;
+            text-decoration: underline;
+        }
+        .enjoy-points-list a:hover {
             color: #01579B;
         }
-        .footer-flyer .footer-contact-info { margin-top: 2.5mm; padding: 2.5mm; border: 1px solid #AED581; border-radius: 6px; background-color: #F9FBE7; }
-        .footer-flyer .footer-contact-info p { font-size: 8pt; color: #33691E; line-height: 1.55; }
-        .footer-flyer .footer-contact-info a { color: #388E3C; text-decoration: underline; }
-        .footer-flyer .footer-contact-info a:hover { color: #EF6C00; }
+        .enjoy-points-list .eemono-link {
+             color: #D84315;
+        }
+        .enjoy-points-list .eemono-link:hover {
+            color: #BF360C;
+        }
 
-        /* Participants List */
-        .participants-list-container { background-color: #FFF9C4; border: 1px solid #FFF59D; border-radius: 6px; padding: 3mm; margin-top: 3.5mm; margin-bottom: 3.5mm; }
-        .participants-list-container h3 { font-size: 10pt; font-weight: 700; color: #F57F17; text-align: center; margin-bottom: 2mm; }
-        .participants-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1mm 2mm; font-size: 7.5pt; color: #795548; text-align: center; }
-        
+        .pdf-download-link {
+            font-size: 8pt; /* Slightly larger */
+            margin-left: 0.8em; 
+            padding: 0.8mm 1.2mm; /* Slightly larger padding */
+            background-color: #FFCA28;
+            color: #3E2723;
+            border-radius: 3px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            vertical-align: middle; 
+        }
+        .pdf-download-link:hover {
+            background-color: #FFB300;
+        }
 
-        /* --- DESKTOP / A4 PRINT STYLES --- */
-        @media (min-width: 768px) { /* Start of desktop/A4 styles */
-            .page-container {
-                max-width: 210mm; 
-                margin: 10mm auto; 
-                box-shadow: 0 0 15px rgba(0,0,0,0.15); 
+        .main-event-frame {
+            margin-top: 4mm;
+            margin-bottom: 4mm;
+            padding: 4mm;
+            border: 2px solid #FFB300; 
+            border-radius: 10px;
+            background-color: #FFFDE7; 
+        }
+        .main-event-frame .schedule-item strong, 
+        .main-event-frame .schedule-item span {
+            font-size: 9.5pt; 
+        }
+        .main-event-frame .schedule-item strong {
+            color: #E65100; 
+        }
+         .main-event-frame .schedule-item {
+            border-left-color: #FFB300; 
+            margin-bottom: 1.5mm; 
+         }
+         .main-event-frame .schedule-item::before {
+             background-color: #FFB300;
+         }
+         .main-event-frame .menu-section { 
+            margin-top: 3mm;
+            margin-bottom: 3mm;
+            padding: 2.5mm;
+         }
+         .main-event-frame .dual-image-container { 
+             margin-top: 3mm;
+             margin-bottom: 3mm;
+         }
+
+
+        .footer-flyer {
+            margin-top: auto;
+            padding-top: 3.5mm;
+            border-top: 1px solid #C5E1A5;
+            text-align: center;
+        }
+        .footer-flyer h4 {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #1B5E20;
+            margin-bottom: 1mm;
+            text-align: left;
+        }
+        .footer-flyer ul {
+            font-size: 8.5pt;
+            color: #4E342E;
+            list-style-type: disc;
+            list-style-position: outside;
+            padding-left: 1.5em;
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .footer-flyer .footer-contact-info {
+            margin-top: 2.5mm;
+            padding: 2.5mm;
+            border: 1px solid #AED581;
+            border-radius: 6px;
+            background-color: #F9FBE7;
+        }
+        .footer-flyer .footer-contact-info p {
+            font-size: 8.5pt;
+            color: #33691E;
+            line-height: 1.55;
+        }
+        .footer-flyer .footer-contact-info a {
+            color: #388E3C;
+            text-decoration: underline;
+        }
+        .footer-flyer .footer-contact-info a:hover {
+            color: #EF6C00;
+        }
+
+        .participants-list-container {
+            background-color: #FFF9C4;
+            border: 1px solid #FFF59D;
+            border-radius: 6px;
+            padding: 3.5mm;
+            margin-top: 3.5mm;
+            margin-bottom: 3.5mm;
+        }
+        .participants-list-container h3 {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #F57F17;
+            text-align: center;
+            margin-bottom: 2mm;
+        }
+        .participants-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1mm 2mm;
+            font-size: 8pt;
+            color: #795548;
+            text-align: center;
+        }
+        @media (min-width: 480px) {
+            .participants-list {
+                 grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
             }
-            .page {
-                padding: 10mm;
-            }
-            .header-gradient h1 { font-size: 19pt; }
-            .header-gradient p { font-size: 10.5pt; }
-            .intro-section { flex-direction: row; align-items: center; text-align: left; }
-            .intro-text { font-size: 9.5pt; text-align: left; }
-            .intro-image-container { flex: 0 0 40%; max-width: 40%; margin-top: 0; }
-            .intro-image-container img { max-height: 35mm; }
-            .section-title-flyer { font-size: 14pt; }
-            .highlight-box { padding: 3.5mm; }
-            .highlight-box h3 { font-size: 11.5pt; }
-            .highlight-box p, .highlight-box li { font-size: 8.5pt; }
-            .info-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
-            .info-item .icon { font-size: 17pt; }
-            .info-item h4 { font-size: 9.5pt; }
-            .info-item .main-info-text { font-size: 10.5pt; }
-            .info-item .sub-info-text { font-size: 7.5pt; }
-            .info-item ul { font-size: 8.5pt; }
-            .schedule-plans-grid { grid-template-columns: repeat(2, 1fr); }
-            .return-plans-grid { grid-template-columns: repeat(3, 1fr); }
-            .schedule-item strong, .common-schedule-time { font-size: 9pt; }
-            .schedule-item span, .common-schedule-text { font-size: 8.5pt; }
-            .schedule-plan-title { font-size: 10.5pt; } /* Titles for A/B plans */
-            .return-plans-grid .schedule-plan-title { font-size: 9.5pt; } /* Titles for C/D/E plans */
-            .dual-image-container { flex-direction: row; align-items: flex-start; }
-            .dual-image-container .image-wrapper { max-width: none; }
-            .dual-image-container img { max-height: 65mm; }
-            .menu-title { font-size: 12.5pt; }
-            .menu-category { font-size: 10pt; }
-            .menu-item { font-size: 8.5pt; }
-            .menu-item.sub-item { font-size: 8pt; }
-            .enjoy-points-list { font-size: 9pt; }
-            .enjoy-points-list .point-icon { font-size: 1.15em; }
-            .pdf-download-link { font-size: 7.5pt; }
-            .footer-flyer h4 { font-size: 9pt; }
-            .footer-flyer ul { font-size: 8.5pt; }
-            .footer-flyer .footer-contact-info p { font-size: 8.5pt; }
-            .participants-list-container h3 { font-size: 10.5pt; }
-            .participants-list { grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); font-size: 8pt; }
-        } /* End of desktop/A4 styles */
+        }
 
-        /* Print specific styles (applied on top of desktop styles) */
+        /* Print specific styles */
         @media print {
             body {
                 width: 210mm;
-                min-height: auto; /* Allow content to dictate height */
+                min-height: auto;
                 margin:0;
-                background-color: #FFFFFF !important; /* Ensure white background for print */
+                background-color: #FFFFFF !important;
                 box-shadow: none !important;
-                -webkit-print-color-adjust: exact !important; /* Ensure background colors print in Chrome/Safari */
-                print-color-adjust: exact !important; /* Standard */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .page-container {
-                max-width: none !important; /* Use full page width for print */
+                max-width: none !important;
                 margin: 0 !important;
                 box-shadow: none !important;
                 background-color: #FFFFFF !important;
             }
             .page {
-                padding: 10mm !important; /* Standard A4 margin */
-                min-height: 277mm !important; /* A4 height minus margins, adjust if needed */
-                background-color: #FFFFFF !important;
+                padding: 10mm !important;
+                min-height: 277mm !important; /* A4 height minus typical printer margins */
             }
-            .plan-container { 
-                border: 1px solid #E0E0E0 !important; 
-                background-color: #FAFAFA !important; 
-                box-shadow: none !important; 
-                transform: none !important; 
-                text-decoration: none !important; 
-                color: inherit !important; 
+            .intro-section {
+                flex-direction: row !important;
+                align-items: center !important;
             }
-            .schedule-item a, .plan-container .schedule-item a, 
-            .footer-flyer ul li a, .intro-text a, .enjoy-points-list a,
-            .menu-item a, .menu-restaurant-link, .pdf-download-link,
-            .footer-flyer .footer-contact-info a { /* General link print style */
-                color: #0288D1 !important; 
-                text-decoration: underline !important; 
-            }
-            .menu-item .eemono-link, .menu-item a.eemono-link,
-            .enjoy-points-list .eemono-link { /* Specific eemono link print style */
-                 color: #D84315 !important;
-            }
+            .intro-text { text-align: left !important; }
+            .intro-image-container { flex: 0 0 40% !important; max-width: 40% !important; margin-top: 0 !important; }
+            .intro-image-container img { max-height: 35mm !important; }
 
-            .common-schedule-time, .plan-container .schedule-item strong {
-                 color: #EF6C00 !important;
+            .info-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important; }
+            .schedule-plans-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .return-plans-grid { grid-template-columns: repeat(3, 1fr) !important; }
+            .dual-image-container { flex-direction: row !important; align-items: flex-start !important; }
+            .dual-image-container .image-wrapper { max-width: none !important; }
+            .participants-list { grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)) !important; }
+            .main-event-frame {
+                 background-color: #FFF9E6 !important;
+                 border: 2px solid #FFCA28 !important;
             }
-            .schedule-plan-title {
-                color: #33691E !important;
-            }
-            .header-gradient { 
-                background: linear-gradient(135deg, #B2EBF2, #E1F5FE) !important;
-                color: #01579B !important;
-            }
-            .highlight-box { background-color: #E8F5E9 !important; }
-            .info-item { background-color: #F1F8E9 !important; }
-            .menu-section { background-color: #FAFAD2 !important; }
-            .participants-list-container { background-color: #FFF9C4 !important; }
-            .footer-flyer .footer-contact-info { background-color: #F9FBE7 !important; }
-
 
             .no-print {
                 display: none !important;
@@ -523,14 +656,16 @@
                 <h2 class="section-title-flyer">お楽しみポイント</h2>
                 <ul class="enjoy-points-list">
                     <li><span class="point-icon">🏞️</span><div><span class="font-bold">歴史的町並み：</span>おおず歴史華回廊認定案内人と巡る<a href="https://kita-m.com/sustainable/evaluations/" target="_blank">『世界の持続可能な観光まちづくり』</a>認証を受けた大洲の歴史的な町並み散策。名建築【<a href="https://jp.visitozu.com/archives/activity/1874" target="_blank">臥龍山荘</a>】探訪。</div></li>
-                    <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>座席を広くしたピカピカの<a href="https://youtu.be/6NsvvzXBq04?si=rTqVCTRBGMDCJgoA" target="_blank">新造船「清流1号」</a>をホヤケン常連様だけでゆったり満喫！</div></li>
+                    <li><span class="point-icon">🚢</span><div><span class="font-bold">特別貸切船：</span>座席を広くしたピカピカの新造船「清流1号」をホヤケン常連様だけでゆったり満喫！</div></li>
                     <li><span class="point-icon">🔥</span><div><span class="font-bold">感動の鵜飼：</span>日本三大鵜飼の一つ、大洲の鵜飼を間近で観覧。鵜舟と観覧船が並走し、鵜が鮎を獲る姿を間近で見ることができる「<a href="https://jp.visitozu.com/archives/feature/132" target="_blank">合わせうかい</a>」！鵜匠の技は必見！</div></li>
                     <li><span class="point-icon">🍽️</span><div><span class="font-bold">船上のお食事：</span>鵜飼を観ながら、<a href="https://www.ozu-eemon.com/" target="_blank" class="eemono-link">大洲ええもんセレクション</a>に選定されている季節の美味しいお食事と地酒などの飲み物をお楽しみいただけます。</div></li>
                 </ul>
             </section>
 
             <section>
-                <h2 class="section-title-flyer">当日のスケジュール</h2>
+                <div class="flex justify-between items-center">
+                    <h2 class="section-title-flyer" style="margin-bottom: 0; border-bottom: none;">当日のスケジュール</h2>
+                    </div>
                  <div class="schedule-plans-grid">
                     <a href="https://maps.app.goo.gl/c89Tot9mSujYW6PR6" target="_blank" class="plan-container">
                         <h4 class="font-semibold text-center text-sm mb-1 schedule-plan-title">Aプラン: JR松山駅利用</h4>
@@ -564,51 +699,69 @@
                     <strong class="common-schedule-time">18:25頃</strong>
                     <span class="common-schedule-text">
                         うかい送迎バス乗車 大洲まちの駅あさもや発（へーけさん、阿部トレヰルさん合流）
+                        <a href="2025_ukai_flyer.pdf" download="大洲鵜飼ツアーチラシ2025.pdf" class="pdf-download-link">2025大洲うかいチラシDL</a>
                     </span>
                 </div>
-                                
-                <div class="schedule-item highlight-box !py-1 !px-2 !border-l-2 !border-[#FF8F00]" style="background-color: #FFFDE7;">
-                    <strong style="color:#E65100; font-size:10.5pt;">18:30～20:30</strong> 
-                    <span style="font-weight:bold; font-size:9.5pt; color: #3E2723;">🌙鵜飼観覧 (貸切遊覧船「清流1号」にてお食事)</span>
-                    <a href="2025_ukai_flyer.pdf" download="大洲鵜飼ツアーチラシ2025.pdf" class="pdf-download-link">2025大洲うかいチラシDL</a>
+                <div class="schedule-item">
+                    <strong class="common-schedule-time">18:30</strong>
+                    <span class="common-schedule-text">
+                        <a href="https://maps.app.goo.gl/jrmFQJVYpzFY32vw7" target="_blank">うかいレストプラザ</a>着
+                    </span>
                 </div>
                 
-                <div class="menu-section">
-                    <h3 class="menu-title">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～ <a href="https://ozuukai.com/business-details/view/3" target="_blank" class="menu-restaurant-link">うかい登録店 むらや</a>提供</h3>
-                    <div class="menu-category-item-group"><span class="menu-category">先付け:</span><div class="menu-items-container"><span class="menu-item"><a href="https://www.ozu-eemon.com/approved-business-operator/iino-assemble/" target="_blank" class="eemono-link">豆腐の麦味噌漬け</a> <span class="eemono">～ええもんセレクションより～</span></span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">お造り:</span><div class="menu-items-container"><span class="menu-item">桜鯛</span><span class="menu-item">鰤</span><span class="menu-item"><a href="https://www.ozu-eemon.com/approved-business-operator/hamaya/" target="_blank" class="eemono-link">鱧の湯引き</a> 梅肉添え <span class="eemono">～ええもんセレクションより～</span></span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">酢の物:</span><div class="menu-items-container"><span class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">煮物:</span><div class="menu-items-container"><span class="menu-item">海老の旨煮、南瓜の含め煮、<a href="https://www.ozu-eemon.com/approved-business-operator/kazita/" target="_blank" class="eemono-link">椎茸と昆布の佃煮</a> <span class="eemono">～ええもんセレクションより～</span>、厚揚げの炊き合わせ、ブロッコリーの出汁浸し</span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">煮魚:</span><div class="menu-items-container"><span class="menu-item"><a href="https://www.ozu-eemon.com/approved-business-operator/amagonosato/" target="_blank" class="eemono-link">天魚（あまご）の甘露煮</a> <span class="eemono">～ええもんセレクションより～</span></span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">揚物（天麩羅）:</span><div class="menu-items-container"><span class="menu-item">海老と季節野菜の盛り合わせ <span class="menu-item sub-item">（海老、蓮根、茄子、椎茸、人参、いんげん、薩摩芋、おくら）</span></span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">飯物:</span><div class="menu-items-container"><span class="menu-item">彩り巻き寿司</span><span class="menu-item">俵型御飯</span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">香の物:</span><div class="menu-items-container"><span class="menu-item">胡瓜の浅漬け</span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">水菓子:</span><div class="menu-items-container"><span class="menu-item">季節のメロン</span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">大皿:</span><div class="menu-items-container"><span class="menu-item">大洲名物 いもたき</span><span class="menu-item">瀬戸内名物 鯛そうめん</span></div></div>
-                    <div class="menu-category-item-group"><span class="menu-category">お飲み物:</span><div class="menu-items-container"><span class="menu-item">ソフトドリンク各種（お茶、水など）</span><p class="menu-item block-item" style="margin-left:0; margin-top:0.5mm;"><a href="https://www.senmiekisu.co.jp/zoburu-landing/#section-about" target="_blank" class="cola-link">「くらふとコーラ ぞぶる」</a> <span class="eemono">～ええもんセレクションより～</span></p><p class="menu-item block-item" style="margin-left:0;">地元銘酒 <a href="https://yoroshuzo.jp/" target="_blank" class="brewery-link">養老酒造</a>（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p></div></div>
-                </div>
-
-                <div class="dual-image-container">
-                    <div class="image-wrapper image-container-blurred-edges">
-                        <img src="usho_image.png" alt="鵜匠の迫力ある姿">
+                <div class="main-event-frame">
+                    <div class="schedule-item">
+                        <strong>18:30～</strong> 
+                        <span>乗船　肱川遊覧とお食事　貸切遊覧船「清流1号」</span>
                     </div>
-                    <div class="image-wrapper image-container-blurred-edges">
-                        <img src="hanabi_image.jpg" alt="夜空を彩る花火">
+                    <div class="menu-section" style="margin-top: 2mm; margin-bottom: 3mm; padding: 2.5mm;">
+                        <h3 class="menu-title" style="font-size: 11.5pt; margin-bottom: 2mm;">初夏の肱川（ひじかわ）清流会席 ～大洲ええモン彩り～ <a href="https://ozuukai.com/business-details/view/3" target="_blank" class="menu-restaurant-link">うかい登録店 むらや</a>提供</h3>
+                        <div class="menu-category-item-group"><span class="menu-category">先付け:</span><div class="menu-items-container"><span class="menu-item"><a href="https://www.ozu-eemon.com/approved-business-operator/iino-assemble/" target="_blank" class="eemono-link">豆腐の麦味噌漬け</a> <span class="eemono">～ええもんセレクションより～</span></span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">お造り:</span><div class="menu-items-container"><span class="menu-item">桜鯛</span><span class="menu-item">鰤</span><span class="menu-item"><a href="https://www.ozu-eemon.com/approved-business-operator/hamaya/" target="_blank" class="eemono-link">鱧の湯引き</a> 梅肉添え <span class="eemono">～ええもんセレクションより～</span></span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">酢の物:</span><div class="menu-items-container"><span class="menu-item">鰯と胡瓜の茗荷辛子味噌和え</span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">煮物:</span><div class="menu-items-container"><span class="menu-item">海老の旨煮、南瓜の含め煮、<a href="https://www.ozu-eemon.com/approved-business-operator/kazita/" target="_blank" class="eemono-link">椎茸と昆布の佃煮</a> <span class="eemono">～ええもんセレクションより～</span>、厚揚げの炊き合わせ、ブロッコリーの出汁浸し</span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">煮魚:</span><div class="menu-items-container"><span class="menu-item"><a href="https://www.ozu-eemon.com/approved-business-operator/amagonosato/" target="_blank" class="eemono-link">天魚（あまご）の甘露煮</a> <span class="eemono">～ええもんセレクションより～</span></span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">揚物（天麩羅）:</span><div class="menu-items-container"><span class="menu-item">海老と季節野菜の盛り合わせ <span class="menu-item sub-item">（海老、蓮根、茄子、椎茸、人参、いんげん、薩摩芋、おくら）</span></span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">飯物:</span><div class="menu-items-container"><span class="menu-item">彩り巻き寿司</span><span class="menu-item">俵型御飯</span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">香の物:</span><div class="menu-items-container"><span class="menu-item">胡瓜の浅漬け</span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">水菓子:</span><div class="menu-items-container"><span class="menu-item">季節のメロン</span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">大皿:</span><div class="menu-items-container"><span class="menu-item">大洲名物 いもたき</span><span class="menu-item">瀬戸内名物 鯛そうめん</span></div></div>
+                        <div class="menu-category-item-group"><span class="menu-category">お飲み物:</span><div class="menu-items-container"><span class="menu-item block-item" style="margin-left:0;">ソフトドリンク各種（お茶、水など）</span><p class="menu-item block-item" style="margin-left:0; margin-top:0.5mm;"><a href="https://www.senmiekisu.co.jp/zoburu-landing/#section-about" target="_blank" class="cola-link">「くらふとコーラ ぞぶる」</a> <span class="eemono">～ええもんセレクションより～</span></p><p class="menu-item block-item" style="margin-left:0;">地元銘酒 <a href="https://yoroshuzo.jp/" target="_blank" class="brewery-link">養老酒造</a>（「鵜洲」、「叶川（かのがわ）」）をはじめ、近隣酒蔵より選りすぐりの日本酒</p></div></div>
+                    </div>
+                    <div class="dual-image-container" style="margin-top: 3mm; margin-bottom: 3mm;">
+                        <div class="image-wrapper image-container-blurred-edges">
+                            <img src="usho_image.png" alt="鵜匠の迫力ある姿">
+                        </div>
+                        <div class="image-wrapper image-container-blurred-edges">
+                            <img src="hanabi_image.jpg" alt="夜空を彩る花火">
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>19:45頃</strong> 
+                        <span>鵜飼開始 鵜舟出船・並走</span>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>20:15頃</strong> 
+                        <span>🎆花火打ち上げ</span>
+                    </div>
+                    <div class="schedule-item">
+                        <strong>20:30頃</strong> 
+                        <span>下船（大洲城下の下船場）</span>
                     </div>
                 </div>
-
-                <div class="schedule-item"><strong class="common-schedule-time">20:40頃</strong> <span class="common-schedule-text">うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
+                
+                <div class="schedule-item"><strong class="common-schedule-time">20:40頃</strong> <span class="common-schedule-text"><a href="https://maps.app.goo.gl/j5JfZMRyp2V53WPVA" target="_blank">市営観光第一駐車場（無料）</a> うかい送迎バス乗車 → JR伊予大洲駅へ</span></div>
                 
                 <h4 class="font-semibold text-center text-sm mb-1 mt-3 schedule-plan-title" style="color:#33691E;">--- お帰りのご案内 ---</h4>
                 <div class="return-plans-grid">
-                    <a href="https://maps.app.goo.gl/4oqkVnmPxCTAwc2M8" target="_blank" class="plan-container">
+                    <a href="https://maps.app.goo.gl/cq28w5HVmPhn2vTb9" target="_blank" class="plan-container">
                         <h5 class="font-semibold text-center text-xs mb-1 schedule-plan-title">Cプラン: JR普通列車 内子線</h5>
                         <div class="schedule-item"><strong>20:54</strong> <span>JR伊予大洲駅発 (普通)</span></div>
                         <div class="schedule-item"><strong>21:46</strong> <span>JR伊予市駅着 終点</span></div>
                         <div class="schedule-item"><strong>21:54</strong> <span>郡中港駅発 (伊予鉄道)</span></div>
                         <div class="schedule-item"><strong>22:23</strong> <span>松山市駅着</span></div>
                     </a>
-                    <a href="https://maps.app.goo.gl/JMQSRQNQk5ukdiHT7" target="_blank" class="plan-container">
+                    <a href="https://maps.app.goo.gl/Cuh6xmeKcRYdt8ma8" target="_blank" class="plan-container">
                         <h5 class="font-semibold text-center text-xs mb-1 schedule-plan-title">Dプラン: JR普通列車 予讃線</h5>
                         <div class="schedule-item"><strong>20:58</strong> <span>JR伊予大洲駅発 (普通)</span></div>
                         <div class="schedule-item"><strong>22:03</strong> <span>JR伊予市駅着</span></div>
@@ -639,7 +792,7 @@
                 <h4>その他注意事項</h4>
                 <ul class="space-y-px">
                     <li>歩きやすい服装・靴でご参加ください。川風は涼しい場合があるので羽織るものがあると便利です。</li>
-                    <li>帰りのJR切符は事前購入をおすすめしますが、車掌が乗車する列車内でも購入可能です。（<a href="https://www.nikkei.com/article/DGXZQOCC014YT0R00C25A4000000/" target="_blank">QRコード決済可能</a>。<a href="https://www.jr-eki.com/smart-eki/" target="_blank" class="ml-1">スマえきちゃんアプリ</a>等もご利用いただけます）</li>
+                    <li>帰りのJR切符は事前購入をおすすめしますが、車掌が乗車する列車内でも購入可能です。（<a href="https://www.nikkei.com/article/DGXZQOCC014YT0R00C25A4000000/" target="_blank" class="text-blue-600 hover:text-blue-800 underline">QRコード決済可能</a>。<a href="https://www.jr-eki.com/smart-eki/" target="_blank" class="text-blue-600 hover:text-blue-800 underline ml-1">スマえきちゃんアプリ</a>等もご利用いただけます）</li>
                     <li>大洲のうかいは、肱川の状況により中止となる場合があります。例えば、降雨やダムの放流により川が増水した場合、参加者の安全を考慮し中止とすることがあります。中止の判断は、通常、当日の午前10時までに行われます。<br>中止となった場合の対応として、鵜飼貸切料のキャンセル料は発生しません。ただし、お食事はご予約いただいたお店にてお楽しみいただけます。</li>
                 </ul>
                 <div class="footer-contact-info">
